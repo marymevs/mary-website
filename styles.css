@@ -46,8 +46,13 @@ main {
   height: 50px;
   width: 120px;
   border: 5px white solid;
-  margin: 20px;
+  margin-top: 20px;
   padding: 10px;
+}
+
+#selected-work-outer > div > a {
+  text-decoration: none;
+  color: white;
 }
 
 #selected-work-inner {
@@ -56,6 +61,7 @@ main {
 }
 
 #selected-work-inner div {
+  margin-top: 18px;
   height: 200px;
   width: 33%;
   border: 5px white solid;
