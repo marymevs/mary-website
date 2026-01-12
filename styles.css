@@ -6,6 +6,7 @@
 
 body {
   margin: 8px;
+  margin-top: 20px;
   background-color: black;
   color: white;
   font-family: "Courier New", Courier, monospace;
@@ -13,7 +14,7 @@ body {
 
 header {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 header nav a {
@@ -28,9 +29,34 @@ main {
 }
 
 #main-description {
+  margin-top: 200px;
   width: 75%;
 }
 
 #main-description h1 {
   font-size: 75px;
+}
+
+#selected-work-outer {
+  display: flex;
+  flex-direction: column;
+}
+
+#selected-work-outer > div {
+  height: 50px;
+  width: 120px;
+  border: 5px white solid;
+  margin: 20px;
+  padding: 10px;
+}
+
+#selected-work-inner {
+  display: flex;
+  gap: 2ch;
+}
+
+#selected-work-inner div {
+  height: 200px;
+  width: 33%;
+  border: 5px white solid;
 }
