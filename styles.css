@@ -1,0 +1,36 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  margin: 8px;
+  background-color: black;
+  color: white;
+  font-family: "Courier New", Courier, monospace;
+}
+
+header {
+  display: flex;
+  justify-content: space-between;
+}
+
+header nav a {
+  color: lightgray;
+}
+
+main {
+  margin: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20ch;
+}
+
+#main-description {
+  width: 75%;
+}
+
+#main-description h1 {
+  font-size: 75px;
+}
