@@ -66,3 +66,26 @@ main {
   width: 33%;
   border: 5px white solid;
 }
+
+footer {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+input {
+  color: black;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+form div {
+  display: flex;
+  flex-direction: column;
+}
