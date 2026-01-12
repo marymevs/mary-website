@@ -17,8 +17,9 @@ header {
   justify-content: space-around;
 }
 
-header nav a {
-  color: lightgray;
+header a {
+  text-decoration: none;
+  color: white;
 }
 
 main {
@@ -88,4 +89,8 @@ form {
 form div {
   display: flex;
   flex-direction: column;
+}
+
+div {
+  border-radius: 3px;
 }
