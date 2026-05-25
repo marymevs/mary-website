@@ -43,7 +43,9 @@ main h2 {
   min-height: 240px;
   color: white;
   text-decoration: none;
-  transition: background-color 0.12s ease, color 0.12s ease;
+  transition:
+    background-color 0.12s ease,
+    color 0.12s ease;
 }
 
 .work-card:hover {
@@ -89,15 +91,10 @@ main h2 {
 }
 
 .work-cards--preview {
+  display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin-top: 18px;
-}
-
-.work-cards--preview .work-card {
-  min-height: 180px;
-  padding: 16px;
-  gap: 10px;
 }
 
 .work-cards--preview .work-card-title {
