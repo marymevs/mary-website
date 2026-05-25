@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gist — Mary Imevbore</title>
+    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./case-study.css" />
+  </head>
+  <body>
+    <header>
+      <a href="./index.html"><h3>Mary Imevbore</h3></a>
+      <nav>
+        <a href="./works.html">Selected Work</a>
+        <a href="./resume.html">Resume</a>
+        <a href="./get-in-touch.html">Get In Touch</a>
+      </nav>
+    </header>
+
+    <main class="case-study">
+      <h1 class="case-study-title">Gist</h1>
+      <p class="case-study-tagline">
+        A daily personalized morning briefing. Pulls signal from your calendar,
+        recent mail, weather, news, and lunar phase, distills it through Claude,
+        and delivers a short read tuned to the person reading it.
+      </p>
+
+      <section class="case-study-section">
+        <h2 class="case-study-section-header">Problem</h2>
+        <p>
+          Most morning newsletters are one-size-fits-all. Gist generates a fresh
+          briefing per user every day, blending their calendar, recent mail,
+          weather, news of interest, and even the day's moon phase, then asks
+          Claude to synthesize a short, personal read.
+        </p>
+        <p>
+          The architecture is deliberately sized for the
+          <strong>1&ndash;10K daily-user range</strong>, not 100K+. Cost
+          ceiling, latency budget, and operational footprint are designed for
+          that bracket &mdash; quietly efficient on Firebase, not webscale.
+        </p>
+      </section>
+
+      <section class="case-study-section">
+        <h2 class="case-study-section-header">Architecture</h2>
+        <ul class="case-study-stack">
+          <li>Firebase Functions</li>
+          <li>TypeScript</li>
+          <li>Claude API</li>
+          <li>Firestore</li>
+          <li>Cloud Scheduler</li>
+          <li>Gmail API</li>
+          <li>OpenWeather</li>
+        </ul>
+        <p>
+          A scheduled Cloud Function runs every 15 minutes, queries Firestore
+          for users whose <code>nextDeliveryAt</code> has passed, and for each
+          eligible user fans out five connector calls in parallel &mdash;
+          weather, calendar, news, Gmail, moon phase. The aggregated signal is
+          handed to Claude for briefing generation, the result is written back
+          to Firestore, and per-user delivery state is updated for the next
+          cycle.
+        </p>
+      </section>
+
+      <section class="case-study-section">
+        <h2 class="case-study-section-header">Technical decisions</h2>
+        <ul class="case-study-decisions">
+          <li>
+            <span class="decision-title">Parallel connector fan-out</span>
+            <p class="decision-why">
+              <span class="file-path">generateMorningGist.ts:92&ndash;98</span>
+              uses <code>Promise.all</code> across five independent connector
+              calls per user. The connectors don't share state, so serializing
+              them buys nothing &mdash; running them in parallel cuts per-user
+              latency from roughly five seconds to one.
+            </p>
+          </li>
+          <li>
+            <span class="decision-title"
+              >Resilient batch with <code>allSettled</code></span
+            >
+            <p class="decision-why">
+              <span class="file-path">generateMorningGist.ts:384&ndash;437</span>
+              is the scheduled fan-out: an <code>onSchedule</code> cron every
+              15 minutes, then <code>Promise.allSettled</code> &mdash; not
+              <code>Promise.all</code> &mdash; over the eligible users. One
+              user's expired Gmail token or rate-limited connector shouldn't
+              tank the whole batch, and a settled batch means failures surface
+              in logs without killing successful deliveries.
+            </p>
+          </li>
+          <li>
+            <span class="decision-title">Idempotency on <code>lastGeneratedDate</code></span>
+            <p class="decision-why">
+              <span class="file-path">generateMorningGist.ts:418&ndash;425</span>
+              short-circuits when <code>lastGeneratedDate === todayKey</code>.
+              Cron retries and overlapping invocations are a real failure mode
+              when an upstream API is slow; without this guard the same user
+              gets the same briefing generated twice and the LLM bill doubles
+              for that day. Cheap insurance.
+            </p>
+          </li>
+          <li>
+            <span class="decision-title">Bounded worker pool for Gmail</span>
+            <p class="decision-why">
+              <span class="file-path">gmailInt.ts:426&ndash;447</span>
+              defines a <code>mapWithConcurrency</code> helper that caps
+              in-flight Gmail requests. Gmail's per-user rate limits are tight
+              and a single user with a busy inbox can otherwise consume the
+              quota the rest of the batch needs. A small concurrency limit
+              keeps every user's connector call inside the budget.
+            </p>
+          </li>
+          <li>
+            <span class="decision-title">Batched Claude classification</span>
+            <p class="decision-why">
+              <span class="file-path">gmailInt.ts:816</span>
+              passes many candidate emails into a single Claude call instead of
+              one call per email. At the batch sizes Gist uses there's no
+              quality cliff, and the per-classification cost drops by roughly
+              an order of magnitude.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <section class="case-study-section">
+        <h2 class="case-study-section-header">What's next</h2>
+        <ul class="case-study-bullets">
+          <li>
+            Model tiering. Every Claude call currently uses
+            <code>claude-sonnet-4-20250514</code>. Lightweight classification
+            work should move to Haiku; reserve Sonnet for the user-facing
+            briefing prose.
+          </li>
+          <li>
+            Anthropic prompt caching. System prompts and connector summaries
+            are stable across users and days &mdash; caching them cuts
+            input-token cost meaningfully.
+          </li>
+          <li>
+            Per-user token budgets. No circuit breaker on runaway prompt size
+            today. A budget gate would catch a misbehaving connector before it
+            burns through the bill.
+          </li>
+          <li>
+            Pub/Sub for queued work. The current shape is scheduler plus
+            on-demand HTTPS. Long-running or retryable tasks would benefit
+            from a real queue rather than ad-hoc retry logic.
+          </li>
+        </ul>
+      </section>
+
+      <section class="case-study-section">
+        <h2 class="case-study-section-header">Links</h2>
+        <div class="case-study-links">
+          <a
+            href="https://gist-backend--gist-ab4e8.us-east4.hosted.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Live backend</a
+          >
+          <a
+            href="https://github.com/marymevs/gist"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Source on GitHub</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <h1>Get in touch</h1>
+      <form action="#">
+        <div>
+          <label for="name">Name</label>
+          <input type="text" id="name" name="user_name" />
+        </div>
+        <div>
+          <label for="name">Email</label>
+          <input type="text" id="name" name="user_name" />
+        </div>
+        <div>
+          <label for="name">How can I help?</label>
+          <input type="text" id="name" name="user_name" />
+        </div>
+      </form>
+    </footer>
+  </body>
+</html>
