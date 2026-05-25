@@ -48,18 +48,6 @@ main {
   flex-direction: column;
 }
 
-#selected-work-inner {
-  display: flex;
-  gap: 2ch;
-}
-
-#selected-work-inner div {
-  margin-top: 18px;
-  height: 200px;
-  width: 33%;
-  border: 5px white solid;
-}
-
 footer {
   display: flex;
   justify-content: space-around;
