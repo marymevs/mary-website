@@ -3,8 +3,9 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mary's Website</title>
+    <title>Mary Imevbore — Software Engineer</title>
     <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./gallery.css" />
   </head>
   <body>
     <header>
@@ -19,30 +20,109 @@
       <section id="main-description">
         <h1>Mary Imevbore</h1>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla
-          iaculis, lorem vel sollicitudin euismod, magna ante egestas nunc, quis
-          gravida dui dui eget tellus. Donec convallis interdum mi ac tempor.
-          Quisque ex mauris, interdum vitae fringilla tempor, congue ac ipsum.
-          Sed mattis ornare neque ullamcorper lacinia. Nulla at tellus nec massa
-          eleifend interdum. Orci varius natoque penatibus et magnis dis
-          parturient montes, nascetur ridiculus mus. Quisque cursus ullamcorper
-          porttitor. Donec varius purus convallis, tristique urna quis, ultrices
-          magna. Fusce sagittis mollis malesuada. Aliquam tincidunt nunc eu elit
-          maximus, sed luctus leo volutpat. Pellentesque non viverra dui. Sed
-          ullamcorper purus vitae enim dignissim, et tempus nisl facilisis.
-          Quisque volutpat rhoncus nibh a dapibus. Praesent eget imperdiet
-          purus, vel molestie velit. Pellentesque tincidunt mi at mi gravida,
-          eget mollis magna vulputate. Interdum et malesuada fames ac ante ipsum
-          primis in faucibus.
+          Software engineer with Amazon-scale production experience and a
+          founder background. Shipped HIPAA-compliant billing infrastructure
+          at PillPack / Amazon Pharmacy, then co-founded Waeve &mdash; a DTC
+          wig brand for Black women featured in Vogue and on the Today Show,
+          $2M seed, wound down in 2024. Now building independently in Angular,
+          Firebase, and TypeScript: a daily personal-briefing OS called Gist,
+          a record store for an artist, and a donation logistics platform for
+          Beauty Forward. Drawn to payments infrastructure, distributed
+          systems, and the messy seam where product judgment meets
+          engineering.
         </p>
+        <p>Brooklyn. Let's build something.</p>
+
+        <section class="press-strip-home">
+          <h3>As seen in</h3>
+          <ul>
+            <li>
+              <a
+                href="https://www.today.com/video/meet-the-founder-of-wig-company-waeve-119952453832"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Today Show</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.vogue.com/article/waeve-is-changing-the-way-black-women-experiment-with-wigs"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Vogue</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.thecut.com/2021/07/tastemakers-mary-imevbore-ceo-and-co-founder-of-waeve.html"
+                target="_blank"
+                rel="noopener noreferrer"
+                >The Cut</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.bostonglobe.com/2021/06/22/business/wigs-are-next-big-thing-boston-beauty-startup-wants-make-buying-process-easier-black-women/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Boston Globe</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.essence.com/beauty/waeve-wig-line-ode-to-black-women/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Essence</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.forbes.com/sites/christinecarter/2025/07/28/how-isan-elba-is-transforming-beauty-waste-into-equity/"
+                target="_blank"
+                rel="noopener noreferrer"
+                >Forbes</a
+              >
+            </li>
+          </ul>
+        </section>
       </section>
+
       <section id="selected-work-outer">
         <h1>Selected Work</h1>
-        <section id="selected-work-inner">
-          <div><a href="./gist.html">Gist</a></div>
-          <div><a href="./moye.html">Artist Website</a></div>
-          <div><a href="./beauty-forward.html">Beauty Forward</a></div>
-        </section>
+        <div class="work-cards work-cards--preview">
+          <div class="work-card">
+            <div class="work-card-title">Gist</div>
+            <p class="work-card-tagline">
+              A daily personalized morning briefing built on Firebase and
+              Claude.
+            </p>
+            <div class="work-card-links">
+              <a href="./gist.html">Case study &rarr;</a>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card-title">Artist Website</div>
+            <p class="work-card-tagline">
+              An online record store for the artist MOYE &mdash; custom
+              checkout backend, persistent audio player, hand-tuned hover
+              language.
+            </p>
+            <div class="work-card-links">
+              <a href="./moye.html">Case study &rarr;</a>
+            </div>
+          </div>
+          <div class="work-card">
+            <div class="work-card-title">Beauty Forward</div>
+            <p class="work-card-tagline">
+              Donation logistics platform &mdash; two production apps plus a
+              shelter analytics layer in design.
+            </p>
+            <div class="work-card-links">
+              <a href="./beauty-forward.html">Case study &rarr;</a>
+            </div>
+          </div>
+        </div>
         <div><a href="./works.html">See More</a></div>
       </section>
     </main>
