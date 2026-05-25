@@ -1,0 +1,223 @@
+/* Case study page layout. Used on gist.html, moye.html, beauty-forward.html
+   (engineering shape) and waeve.html (founder shape). Reuses header/footer
+   from styles.css. Page <main> gets class="case-study".
+
+   Expected structure (sketched for reference):
+
+   <main class="case-study">
+     <h1 class="case-study-title">…</h1>
+     <p class="case-study-tagline">…</p>
+
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">Problem</h2>
+       <p>…</p>
+     </section>
+
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">Architecture</h2>
+       <ul class="case-study-stack"><li>Angular</li><li>TypeScript</li>…</ul>
+       <p>…narrative…</p>
+     </section>
+
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">Technical decisions</h2>
+       <ul class="case-study-decisions">
+         <li>
+           <span class="decision-title">Parallel connector fan-out</span>
+           <p class="decision-why">…</p>
+         </li>
+       </ul>
+     </section>
+
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">What's next</h2>
+       <ul class="case-study-bullets"><li>…</li></ul>
+     </section>
+
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">Links</h2>
+       <div class="case-study-links"><a href="…">Live</a>…</div>
+     </section>
+
+     <!-- Waeve only -->
+     <section class="case-study-section">
+       <h2 class="case-study-section-header">Press</h2>
+       <ul class="press-strip"><li><a href="…">Today Show</a></li>…</ul>
+     </section>
+   </main>
+*/
+
+main.case-study {
+  margin: 80px auto;
+  max-width: 72ch;
+  padding: 0 30px;
+  gap: 0;
+  display: block;
+}
+
+.case-study-title {
+  font-size: 48px;
+  font-weight: bold;
+  letter-spacing: 0.02em;
+  margin-bottom: 8px;
+}
+
+.case-study-tagline {
+  font-size: 16px;
+  opacity: 0.85;
+  margin-bottom: 48px;
+  line-height: 1.5;
+}
+
+.case-study-section {
+  margin-top: 36px;
+}
+
+.case-study-section-header {
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  border-bottom: 1px solid white;
+  padding-bottom: 6px;
+  margin-bottom: 18px;
+  font-weight: bold;
+}
+
+.case-study-section p {
+  font-size: 15px;
+  line-height: 1.6;
+  margin-bottom: 12px;
+}
+
+.case-study-section p:last-child {
+  margin-bottom: 0;
+}
+
+/* Stack list — inline middle-dot separated for compactness */
+.case-study-stack {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 18px;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.case-study-stack li {
+  display: inline;
+}
+
+.case-study-stack li:not(:last-child)::after {
+  content: " · ";
+  margin: 0 0.3ch;
+  opacity: 0.6;
+}
+
+/* Technical decisions — each item is a "decision + the why" pair */
+.case-study-decisions {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.case-study-decisions > li {
+  margin-bottom: 18px;
+  border-left: 2px solid white;
+  padding-left: 14px;
+}
+
+.case-study-decisions > li:last-child {
+  margin-bottom: 0;
+}
+
+.decision-title {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 4px;
+  font-size: 15px;
+}
+
+.decision-why {
+  font-size: 14px;
+  line-height: 1.55;
+  margin: 0;
+}
+
+/* What's next / What I learned — bullet lists with chevron markers */
+.case-study-bullets {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.case-study-bullets li {
+  font-size: 14px;
+  line-height: 1.55;
+  margin-bottom: 8px;
+  padding-left: 18px;
+  position: relative;
+}
+
+.case-study-bullets li::before {
+  content: "›";
+  position: absolute;
+  left: 0;
+  opacity: 0.7;
+}
+
+/* Links section — vertical link rows, matches the work-card-links style */
+.case-study-links {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.case-study-links a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+  width: fit-content;
+}
+
+.case-study-links a:hover {
+  border-bottom-style: solid;
+}
+
+/* Inline code / file path references inside the engineering case studies */
+.case-study code,
+.case-study .file-path {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.92em;
+  padding: 1px 5px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 2px;
+}
+
+/* Press strip — used at the bottom of waeve.html, ~14 inline links */
+.press-strip {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.press-strip li {
+  display: inline;
+}
+
+.press-strip li:not(:last-child)::after {
+  content: " · ";
+  margin: 0 0.3ch;
+  opacity: 0.5;
+}
+
+.press-strip a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.press-strip a:hover {
+  border-bottom-style: solid;
+}
