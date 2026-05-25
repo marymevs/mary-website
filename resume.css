@@ -6,6 +6,48 @@ main {
   margin-top: 100px;
 }
 
+/* Page header (name + contact strip + summary) at the top of the resume.
+   Sits above the first print-buttons row. */
+.resume-contact {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.resume-contact a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.resume-contact a:hover {
+  border-bottom-style: solid;
+}
+
+.resume-summary {
+  margin-top: 24px;
+  max-width: 75ch;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* Small "Read the case study →" link that follows each job's bullet list
+   in Professional Experience and Technical Projects. */
+.case-study-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.case-study-link a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.case-study-link a:hover {
+  border-bottom-style: solid;
+}
+
 .print-buttons {
   display: flex;
   justify-content: space-around;
