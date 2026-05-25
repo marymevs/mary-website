@@ -48,19 +48,6 @@ main {
   flex-direction: column;
 }
 
-#selected-work-outer > div {
-  height: 50px;
-  width: 120px;
-  border: 5px white solid;
-  margin-top: 20px;
-  padding: 10px;
-}
-
-#selected-work-outer > div > a {
-  text-decoration: none;
-  color: white;
-}
-
 #selected-work-inner {
   display: flex;
   gap: 2ch;
