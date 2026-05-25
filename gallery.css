@@ -81,6 +81,13 @@ main h2 {
   border-bottom-style: solid;
 }
 
+/* Sections with a single card (e.g. Companies → Waeve) collapse the grid
+   to one column so the lone card spans the row instead of sitting in
+   column 1 with empty cells to its right. */
+.work-cards--single {
+  grid-template-columns: 1fr;
+}
+
 .work-cards--preview {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
