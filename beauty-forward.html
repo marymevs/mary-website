@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,7 +21,8 @@
       <h1 class="case-study-title">Beauty Forward</h1>
       <p class="case-study-tagline">
         A donation logistics platform for beauty product redistribution, built
-        for <a
+        for
+        <a
           href="https://www.forbes.com/sites/christinecarter/2025/07/28/how-isan-elba-is-transforming-beauty-waste-into-equity/"
           target="_blank"
           rel="noopener noreferrer"
@@ -34,17 +35,15 @@
       <section class="case-study-section">
         <h2 class="case-study-section-header">Problem</h2>
         <p>
-          Beauty Forward routes donated, unused beauty products from
-          individuals to shelters. The operational reality has three pieces:
-          getting product physically out of donors' homes (courier logistics,
-          payment verification, scheduling), getting it onto shelter shelves
-          with accurate inventory records (intake, classification, batching),
-          and giving shelters visibility into what's coming and what they have
-          on hand (analytics).
+          Beauty Forward routes donated, unused beauty products from individuals
+          to shelters. The operational reality has three pieces: getting product
+          physically out of donors' homes (courier logistics, payment
+          verification, scheduling), getting it onto shelter shelves with
+          accurate inventory records (intake, classification, batching), and
+          giving shelters visibility into what's coming and what they have on
+          hand (analytics).
         </p>
-        <p>
-          Three apps. Two in production. One in design.
-        </p>
+        <p>Three apps. Two in production. One in design.</p>
       </section>
 
       <section class="case-study-section">
@@ -61,16 +60,15 @@
         <p>
           <strong>donation-delivery-app</strong> is the donor-facing pickup
           scheduler. Angular 21 frontend, Firebase Cloud Functions backend,
-          Firestore for state. Integrates Roadie for last-mile courier
-          dispatch, Givebutter for donation processing and payment
-          verification, HubSpot for CRM upserts, and Resend for transactional
-          email.
+          Firestore for state. Integrates Roadie for last-mile courier dispatch,
+          Givebutter for donation processing and payment verification, HubSpot
+          for CRM upserts, and Resend for transactional email.
         </p>
         <p>
           <strong>inventory-management-system</strong> is the shelter-facing
-          intake and batching app. Same Angular + Firebase shape, plus
-          Firebase Data Connect for relational queries and Vertex AI's Gemini
-          1.5 Flash for photo-to-inventory extraction at intake.
+          intake and batching app. Same Angular + Firebase shape, plus Firebase
+          Data Connect for relational queries and Vertex AI's Gemini 1.5 Flash
+          for photo-to-inventory extraction at intake.
         </p>
         <p>
           <strong>The analytics dashboard</strong> is the third app, currently
@@ -83,7 +81,8 @@
         <ul class="case-study-decisions">
           <li>
             <span class="decision-title"
-              >Three-path payment + courier orchestration with webhook recovery</span
+              >Three-path payment + courier orchestration with webhook
+              recovery</span
             >
             <p class="decision-why">
               <span class="file-path"
@@ -116,10 +115,10 @@
               "morning") into the ISO-8601 UTC timestamps Roadie's API expects.
               The conversion uses <code>Intl.DateTimeFormat</code> against
               <code>America/New_York</code> so daylight-saving transitions
-              resolve correctly &mdash; not naive
-              <code>Date</code> arithmetic. The same path rejects windows that
-              have already passed, with a one-hour buffer to absorb clock skew
-              between the client, Firebase, and Roadie.
+              resolve correctly &mdash; not naive <code>Date</code> arithmetic.
+              The same path rejects windows that have already passed, with a
+              one-hour buffer to absorb clock skew between the client, Firebase,
+              and Roadie.
             </p>
           </li>
           <li>
@@ -130,13 +129,13 @@
               <span class="file-path"
                 >donation-delivery-app/functions/src/services/givebutter.service.ts:69&ndash;191</span
               >
-              originally tried session-ID-based payment verification, but
-              Google Pay's iframe broke session continuity. The replacement
-              fetches the donor's recent Givebutter transactions by email,
-              paginates up to five pages of fifty, filters client-side against
-              a 30-minute lookback window, and stops early at the cutoff.
-              Defensive amount parsing accounts for three slightly different
-              fields the Givebutter API exposes depending on payment method.
+              originally tried session-ID-based payment verification, but Google
+              Pay's iframe broke session continuity. The replacement fetches the
+              donor's recent Givebutter transactions by email, paginates up to
+              five pages of fifty, filters client-side against a 30-minute
+              lookback window, and stops early at the cutoff. Defensive amount
+              parsing accounts for three slightly different fields the
+              Givebutter API exposes depending on payment method.
             </p>
           </li>
           <li>
@@ -159,21 +158,22 @@
           </li>
           <li>
             <span class="decision-title"
-              >Multimodal photo-to-inventory with schema-constrained Gemini</span
+              >Multimodal photo-to-inventory with schema-constrained
+              Gemini</span
             >
             <p class="decision-why">
               <span class="file-path"
                 >inventory-management-system/functions/src/index.ts:219&ndash;287</span
               >
-              calls Gemini 1.5 Flash with the donor's product photo,
-              temperature 0.2 (low, near-deterministic), and a JSON-schema
-              constraint covering a 30-entry product-type enum plus a
-              high/medium/low confidence field. The prompt asks the model to
-              omit fields it isn't sure about, and the confidence field drives
-              a UI hint that asks for manual verification on low-confidence
-              extractions. When photo extraction is uncertain, a fallback
-              chain tries Open Beauty Facts &rarr; Open Food Facts &rarr;
-              UPCitemdb &rarr; text-only Gemini, in that order.
+              calls Gemini 1.5 Flash with the donor's product photo, temperature
+              0.2 (low, near-deterministic), and a JSON-schema constraint
+              covering a 30-entry product-type enum plus a high/medium/low
+              confidence field. The prompt asks the model to omit fields it
+              isn't sure about, and the confidence field drives a UI hint that
+              asks for manual verification on low-confidence extractions. When
+              photo extraction is uncertain, a fallback chain tries Open Beauty
+              Facts &rarr; Open Food Facts &rarr; UPCitemdb &rarr; text-only
+              Gemini, in that order.
             </p>
           </li>
         </ul>
@@ -187,15 +187,14 @@
             three quant-relevant features: a policy backtesting playground
             (replay historical donation flows under alternative batching and
             dispatch rules, compare outcomes); shelter-volume forecasting with
-            confidence bands (per-region, per-category, simple SARIMA or
-            Prophet baseline benchmarked against held-out MAE); and real-time
-            streaming tiles via SSE for live donation-flow visibility. Stretch
-            scope: an optimization visualizer for the shelter-batching
-            allocation problem.
+            confidence bands (per-region, per-category, simple SARIMA or Prophet
+            baseline benchmarked against held-out MAE); and real-time streaming
+            tiles via SSE for live donation-flow visibility. Stretch scope: an
+            optimization visualizer for the shelter-batching allocation problem.
           </li>
           <li>
-            <strong>Shelter acceptance rule enforcement.</strong> The data
-            model already stores per-shelter <code>acceptedTypes</code>,
+            <strong>Shelter acceptance rule enforcement.</strong> The data model
+            already stores per-shelter <code>acceptedTypes</code>,
             <code>rejectedTypes</code>, <code>preferredBrands</code>, and
             <code>capacityPerBatch</code>. The matching algorithm that filters
             incoming products against these rules during batch allocation is
@@ -205,8 +204,8 @@
           <li>
             <strong>Real Givebutter session creation.</strong> The current
             donation flow builds a Givebutter checkout URL; the longer-term
-            shape is a server-side session-creation API call so the platform
-            can carry session metadata end-to-end and tighten reconciliation.
+            shape is a server-side session-creation API call so the platform can
+            carry session metadata end-to-end and tighten reconciliation.
           </li>
         </ul>
       </section>
@@ -248,7 +247,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer id="get-in-touch">
       <h1>Get in touch</h1>
       <form action="#">
         <div>
@@ -256,12 +255,12 @@
           <input type="text" id="name" name="user_name" />
         </div>
         <div>
-          <label for="name">Email</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="email">Email</label>
+          <input type="text" id="email" name="user_name" />
         </div>
         <div>
-          <label for="name">How can I help?</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="message">How can I help?</label>
+          <input type="text" id="message" name="user_name" />
         </div>
       </form>
     </footer>
