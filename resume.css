@@ -60,20 +60,6 @@ main {
   padding: 10px;
 }
 
-/* Speaking & Recognition section — appended above the bottom print buttons.
-   Reuses the section h1 cadence of the existing resume sections, with h2
-   repurposed as a sub-section label (Speaking / Recognition / Press).
-   Expected structure:
-     <section id="speaking-recognition">
-       <h1>Speaking & Recognition</h1>
-       <h2>Speaking</h2>
-       <ul><li><a>…</a></li></ul>
-       <h2>Recognition</h2>
-       <ul><li><a>…</a></li></ul>
-       <h2>Press</h2>
-       <ul class="press-headlines"><li><a>…</a></li>…</ul>
-     </section>
-*/
 #speaking-recognition h2 {
   margin-top: 28px;
   font-size: 22px;
