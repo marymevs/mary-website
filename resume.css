@@ -6,8 +6,6 @@ main {
   margin-top: 100px;
 }
 
-/* Page header (name + contact strip + summary) at the top of the resume.
-   Sits above the first print-buttons row. */
 .resume-contact {
   margin-top: 12px;
   font-size: 14px;
