@@ -35,7 +35,7 @@ main {
 }
 
 #main-description {
-  margin-top: 200px;
+  margin-top: 50px;
   width: 75%;
 }
 
@@ -44,6 +44,7 @@ main {
 }
 
 #selected-work-outer {
+  margin-top: 2rem;
   display: flex;
   flex-direction: column;
 }

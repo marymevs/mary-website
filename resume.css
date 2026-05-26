@@ -31,6 +31,10 @@ main {
   line-height: 1.6;
 }
 
+.resume-headline {
+  margin-top: 1.5rem;
+}
+
 /* Small "Read the case study →" link that follows each job's bullet list
    in Professional Experience and Technical Projects. */
 .case-study-link {
