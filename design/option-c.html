@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mary Imevbore — Software Engineer (Option C mockup)</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap"
+    />
+    <style>
+      /* ───────────────────────────────────────────────────────── */
+      /*  Option C — Brutalist Grid                                */
+      /* ───────────────────────────────────────────────────────── */
+
+      :root {
+        --bg: #ffffff;
+        --fg: #000000;
+        --muted: #666666;
+        --accent: #0040ff;
+        --rule: #000000;
+
+        --sans: "Inter", system-ui, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--sans);
+        font-size: 16px;
+        line-height: 1.5;
+        padding: 48px 32px 128px;
+      }
+
+      .page {
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      a {
+        color: var(--fg);
+        text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: color 0.08s, border-bottom-color 0.08s;
+      }
+
+      a:hover {
+        color: var(--accent);
+        border-bottom-color: var(--accent);
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+      }
+
+      /* ── header ───────────────────────────────────────────── */
+
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--rule);
+        margin-bottom: 80px;
+      }
+
+      header .masthead {
+        font-weight: 800;
+        font-size: 15px;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      header nav {
+        display: flex;
+        gap: 32px;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      header nav a:hover {
+        border-bottom: none;
+      }
+
+      /* ── section header ───────────────────────────────────── */
+
+      .section-header {
+        margin: 128px 0 48px;
+        padding-bottom: 24px;
+        border-bottom: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+        align-items: baseline;
+      }
+
+      .section-header:first-of-type {
+        margin-top: 0;
+      }
+
+      .section-header .num {
+        grid-column: 1 / span 2;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+      }
+
+      .section-header .name {
+        grid-column: 3 / span 8;
+        font-size: 32px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      /* ── hero ─────────────────────────────────────────────── */
+
+      .hero {
+        margin-bottom: 80px;
+      }
+
+      .hero h1 {
+        font-size: 112px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 0.95;
+        grid-column: 1 / span 10;
+        margin-bottom: 48px;
+      }
+
+      .hero .lede {
+        grid-column: 1 / span 7;
+        font-size: 18px;
+        line-height: 1.5;
+        margin-bottom: 24px;
+      }
+
+      .hero .personality {
+        grid-column: 1 / span 7;
+        font-size: 18px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+        color: var(--accent);
+      }
+
+      .hero .meta {
+        grid-column: 9 / span 4;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        line-height: 2;
+      }
+
+      .hero .meta .key {
+        color: var(--fg);
+      }
+
+      /* ── press strip ──────────────────────────────────────── */
+
+      .press {
+        grid-column: 1 / span 12;
+        margin-top: 48px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+        display: flex;
+        align-items: baseline;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      .press .label {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+        margin-right: 16px;
+      }
+
+      .press ul {
+        list-style: none;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+        font-size: 16px;
+        font-weight: 500;
+      }
+
+      /* ── selected work cards ──────────────────────────────── */
+
+      .work {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+      }
+
+      .work-item {
+        grid-column: span 6;
+        border: 1px solid var(--rule);
+        padding: 32px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        transition: border-color 0.08s, color 0.08s;
+        color: var(--fg);
+      }
+
+      .work-item:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+      }
+
+      .work-item .num {
+        font-size: 64px;
+        font-weight: 800;
+        letter-spacing: -0.04em;
+        line-height: 1;
+      }
+
+      .work-item .name {
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .work-item .tagline {
+        font-size: 15px;
+        line-height: 1.5;
+      }
+
+      .work-item .links {
+        margin-top: auto;
+        padding-top: 16px;
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+      }
+
+      .work-item .links a {
+        color: inherit;
+      }
+
+      .work-item .links a:hover {
+        border-bottom-color: currentColor;
+      }
+
+      .work-item .links a:not(:last-child)::after {
+        content: " · ";
+        margin: 0 4px;
+      }
+
+      /* ── numbered list rows (Writing, Recorded) ───────────── */
+
+      .listing {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .listing-row {
+        display: grid;
+        grid-template-columns: 6ch 1fr auto;
+        gap: 24px;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--rule);
+        align-items: baseline;
+        color: var(--fg);
+        transition: color 0.08s;
+      }
+
+      .listing-row:first-child {
+        border-top: 1px solid var(--rule);
+      }
+
+      .listing-row:hover {
+        color: var(--accent);
+      }
+
+      .listing-row .num {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+      }
+
+      .listing-row .title {
+        font-size: 20px;
+        font-weight: 700;
+        letter-spacing: -0.01em;
+      }
+
+      .listing-row .date {
+        font-size: 12px;
+        font-weight: 500;
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        color: var(--muted);
+      }
+
+      /* ── footer ───────────────────────────────────────────── */
+
+      footer {
+        margin-top: 128px;
+        padding-top: 48px;
+        border-top: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 24px;
+      }
+
+      footer .contact-num {
+        grid-column: 1 / span 2;
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.14em;
+      }
+
+      footer .contact-name {
+        grid-column: 3 / span 6;
+        font-size: 48px;
+        font-weight: 800;
+        letter-spacing: -0.02em;
+      }
+
+      footer .contact-links {
+        grid-column: 9 / span 4;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        font-size: 18px;
+        font-weight: 500;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="masthead">Mary Imevbore</div>
+        <nav>
+          <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="#recorded">Recorded</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero grid">
+        <h1>Mary<br />Imevbore</h1>
+        <p class="lede">
+          Software engineer with Amazon-scale production experience and a
+          founder background. Shipped HIPAA-compliant billing infrastructure
+          at PillPack / Amazon Pharmacy, then co-founded Waeve — a DTC wig
+          brand for Black women featured in Vogue and on the Today Show, $2M
+          seed, wound down in 2024. Now building independently in Angular,
+          Firebase, and TypeScript: a daily personal-briefing OS called Gist,
+          a record store for an artist, and a donation logistics platform for
+          Beauty Forward.
+        </p>
+        <p class="personality">Brooklyn. Let's build something.</p>
+
+        <div class="meta">
+          <div><span class="key">Based in</span> &nbsp; Brooklyn, NY</div>
+          <div><span class="key">Available for</span> &nbsp; Senior IC roles</div>
+          <div><span class="key">Drawn to</span> &nbsp; Payments infra, distributed systems</div>
+          <div><span class="key">Languages</span> &nbsp; Go, TypeScript, Ruby, SQL</div>
+        </div>
+
+        <div class="press">
+          <span class="label">As seen in</span>
+          <ul>
+            <li><a href="#">Today Show</a></li>
+            <li><a href="#">Vogue</a></li>
+            <li><a href="#">The Cut</a></li>
+            <li><a href="#">Boston Globe</a></li>
+            <li><a href="#">Essence</a></li>
+            <li><a href="#">Forbes</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="section-header">
+        <div class="num">01 /</div>
+        <div class="name">Selected Work</div>
+      </div>
+
+      <section id="work" class="work">
+        <a class="work-item" href="#">
+          <div class="num">01</div>
+          <div class="name">Gist</div>
+          <div class="tagline">
+            A daily personalized morning briefing built on Firebase Functions
+            and the Claude API. Parallel connector fan-out, scheduled cron,
+            batched LLM classification.
+          </div>
+          <div class="links">
+            <a href="#">Case study</a><a href="#">Live</a><a href="#">Source</a>
+          </div>
+        </a>
+        <a class="work-item" href="#">
+          <div class="num">02</div>
+          <div class="name">MOYE</div>
+          <div class="tagline">
+            An online record store for the artist MOYE. Custom checkout
+            backend, an audio player that survives every page navigation, and
+            a hand-tuned hover language.
+          </div>
+          <div class="links">
+            <a href="#">Case study</a><a href="#">Live</a><a href="#">Source</a>
+          </div>
+        </a>
+        <a class="work-item" href="#">
+          <div class="num">03</div>
+          <div class="name">Beauty Forward</div>
+          <div class="tagline">
+            Donation logistics platform for beauty product redistribution. Two
+            production apps plus a shelter analytics layer in design.
+          </div>
+          <div class="links">
+            <a href="#">Case study</a><a href="#">Live</a><a href="#">Press</a>
+          </div>
+        </a>
+        <a class="work-item" href="#">
+          <div class="num">04</div>
+          <div class="name">Waeve</div>
+          <div class="tagline">
+            DTC wig brand for Black women I co-founded in 2018. $2M seed,
+            launched June 2021, scaled to nine people, wound down in 2024.
+          </div>
+          <div class="links">
+            <a href="#">Case study</a><a href="#">Live</a><a href="#">Press</a>
+          </div>
+        </a>
+      </section>
+
+      <div class="section-header">
+        <div class="num">02 /</div>
+        <div class="name">Writing</div>
+      </div>
+
+      <section id="writing" class="listing">
+        <a class="listing-row" href="#">
+          <div class="num">01</div>
+          <div class="title">How I think about cross-cutting orchestration</div>
+          <div class="date">2026-05-20</div>
+        </a>
+        <a class="listing-row" href="#">
+          <div class="num">02</div>
+          <div class="title">Notes on the Shopify revert at Waeve</div>
+          <div class="date">2026-04-12</div>
+        </a>
+        <a class="listing-row" href="#">
+          <div class="num">03</div>
+          <div class="title">What I learned shipping HIPAA APIs at 22</div>
+          <div class="date">2026-03-01</div>
+        </a>
+      </section>
+
+      <div class="section-header">
+        <div class="num">03 /</div>
+        <div class="name">Recorded</div>
+      </div>
+
+      <section id="recorded" class="listing">
+        <a class="listing-row" href="#">
+          <div class="num">01</div>
+          <div class="title">Williams Women's Conference keynote</div>
+          <div class="date">2025-09</div>
+        </a>
+        <a class="listing-row" href="#">
+          <div class="num">02</div>
+          <div class="title">Drake of the Day, explained</div>
+          <div class="date">2024-11</div>
+        </a>
+        <a class="listing-row" href="#">
+          <div class="num">03</div>
+          <div class="title">Today Show segment — Waeve launch</div>
+          <div class="date">2021-06</div>
+        </a>
+      </section>
+
+      <footer id="contact">
+        <div class="contact-num">04 /</div>
+        <div class="contact-name">Contact</div>
+        <div class="contact-links">
+          <a href="mailto:mimevbore14@gmail.com">mimevbore14@gmail.com</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

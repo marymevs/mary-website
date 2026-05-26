@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mary Imevbore — Software Engineer (Option B mockup)</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500&display=swap"
+    />
+    <style>
+      /* ───────────────────────────────────────────────────────── */
+      /*  Option B — Editorial Print                               */
+      /* ───────────────────────────────────────────────────────── */
+
+      :root {
+        --bg: #faf8f3;
+        --fg: #0d0d1a;
+        --muted: #6b6560;
+        --accent: #7a1f2b;
+        --rule: #ddd8d0;
+
+        --serif: "Source Serif 4", Georgia, "Times New Roman", serif;
+        --sans: "Inter", system-ui, sans-serif;
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      html {
+        background: var(--bg);
+      }
+
+      body {
+        background: var(--bg);
+        color: var(--fg);
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.6;
+        padding: 96px 24px 128px;
+      }
+
+      .page {
+        max-width: 65ch;
+        margin: 0 auto;
+      }
+
+      a {
+        color: var(--fg);
+        text-decoration: none;
+        border-bottom: 1px dotted currentColor;
+        transition: color 0.12s, border-bottom-style 0.12s;
+      }
+
+      a:hover {
+        color: var(--accent);
+        border-bottom-style: solid;
+      }
+
+      /* ── header ───────────────────────────────────────────── */
+
+      header {
+        font-family: var(--sans);
+        font-size: 13px;
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        padding-bottom: 16px;
+        margin-bottom: 56px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      header .masthead {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 15px;
+        letter-spacing: 0.02em;
+      }
+
+      header nav {
+        display: flex;
+        gap: 24px;
+      }
+
+      header nav a {
+        border-bottom: none;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+      }
+
+      header nav a:hover {
+        color: var(--accent);
+      }
+
+      /* ── section labels ──────────────────────────────────── */
+
+      .section-label {
+        font-family: var(--sans);
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+        color: var(--muted);
+        font-weight: 500;
+        margin: 80px 0 24px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .section-label:first-of-type {
+        margin-top: 0;
+        border-top: none;
+        padding-top: 0;
+      }
+
+      /* ── hero ─────────────────────────────────────────────── */
+
+      .hero h1 {
+        font-family: var(--serif);
+        font-size: 64px;
+        font-weight: 700;
+        letter-spacing: -0.02em;
+        line-height: 1.05;
+        margin-bottom: 36px;
+      }
+
+      .hero .lede {
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.65;
+        text-align: justify;
+        hyphens: auto;
+      }
+
+      .hero .lede::first-letter {
+        font-weight: 700;
+        font-size: 4em;
+        float: left;
+        line-height: 0.9;
+        padding: 4px 8px 0 0;
+        color: var(--accent);
+      }
+
+      .hero .personality {
+        margin-top: 24px;
+        font-family: var(--serif);
+        font-style: italic;
+        color: var(--muted);
+        font-size: 17px;
+      }
+
+      /* ── press strip (masthead-style) ─────────────────────── */
+
+      .press {
+        margin-top: 36px;
+        padding-top: 16px;
+        border-top: 1px solid var(--rule);
+        font-family: var(--sans);
+        font-size: 11px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.24em;
+      }
+
+      .press .label {
+        margin-right: 12px;
+      }
+
+      .press ul {
+        list-style: none;
+        display: inline;
+        font-family: var(--serif);
+        font-style: italic;
+        font-size: 14px;
+        text-transform: none;
+        letter-spacing: 0;
+        color: var(--fg);
+      }
+
+      .press ul li {
+        display: inline;
+      }
+
+      .press ul li:not(:last-child)::after {
+        content: " · ";
+        margin: 0 0.3ch;
+        color: var(--muted);
+      }
+
+      .press ul a {
+        border-bottom-style: dotted;
+      }
+
+      /* ── numbered list (Selected Work, Writing, Recorded) ─── */
+
+      .numbered {
+        list-style: none;
+        counter-reset: item;
+      }
+
+      .numbered > li {
+        counter-increment: item;
+        padding: 24px 0;
+        border-bottom: 1px solid var(--rule);
+        display: grid;
+        grid-template-columns: 4ch 1fr;
+        gap: 16px;
+      }
+
+      .numbered > li::before {
+        content: counter(item, upper-roman) ".";
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 20px;
+        color: var(--muted);
+      }
+
+      .numbered .title {
+        font-family: var(--serif);
+        font-weight: 700;
+        font-size: 22px;
+        letter-spacing: -0.01em;
+      }
+
+      .numbered .tagline {
+        font-family: var(--serif);
+        font-size: 17px;
+        line-height: 1.5;
+        margin-top: 4px;
+      }
+
+      .numbered .meta {
+        font-family: var(--sans);
+        font-size: 12px;
+        color: var(--muted);
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        margin-top: 8px;
+      }
+
+      .numbered .links {
+        font-family: var(--sans);
+        font-size: 13px;
+        margin-top: 12px;
+      }
+
+      .numbered .links a {
+        border-bottom-style: dotted;
+      }
+
+      .numbered .links a:not(:last-child)::after {
+        content: " · ";
+        color: var(--muted);
+        margin: 0 0.3ch;
+      }
+
+      /* ── pull quote (decorative example, not used in mockup) ── */
+
+      blockquote {
+        border-left: 3px solid var(--accent);
+        padding-left: 20px;
+        font-style: italic;
+        font-size: 19px;
+        line-height: 1.5;
+        margin: 24px 0;
+      }
+
+      /* ── footer ───────────────────────────────────────────── */
+
+      footer {
+        margin-top: 96px;
+        padding-top: 24px;
+        border-top: 1px solid var(--rule);
+        font-family: var(--sans);
+        font-size: 13px;
+        color: var(--muted);
+        display: flex;
+        justify-content: space-between;
+        flex-wrap: wrap;
+        gap: 16px;
+      }
+
+      footer a {
+        color: var(--fg);
+        border-bottom-style: dotted;
+      }
+
+      footer .reach {
+        display: flex;
+        gap: 16px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page">
+      <header>
+        <div class="masthead">Mary Imevbore</div>
+        <nav>
+          <a href="#work">Work</a>
+          <a href="#writing">Writing</a>
+          <a href="#recorded">Recorded</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </header>
+
+      <section class="hero">
+        <h1>Mary Imevbore</h1>
+        <p class="lede">
+          Software engineer with Amazon-scale production experience and a
+          founder background. Shipped HIPAA-compliant billing infrastructure
+          at PillPack / Amazon Pharmacy, then co-founded Waeve &mdash; a DTC
+          wig brand for Black women featured in Vogue and on the Today Show,
+          $2M seed, wound down in 2024. Now building independently in Angular,
+          Firebase, and TypeScript: a daily personal-briefing OS called Gist,
+          a record store for an artist, and a donation logistics platform for
+          Beauty Forward. Drawn to payments infrastructure, distributed
+          systems, and the messy seam where product judgment meets engineering.
+        </p>
+        <p class="personality">Brooklyn. Let's build something.</p>
+
+        <div class="press">
+          <span class="label">As seen in</span>
+          <ul>
+            <li><a href="#">Today Show</a></li>
+            <li><a href="#">Vogue</a></li>
+            <li><a href="#">The Cut</a></li>
+            <li><a href="#">Boston Globe</a></li>
+            <li><a href="#">Essence</a></li>
+            <li><a href="#">Forbes</a></li>
+          </ul>
+        </div>
+      </section>
+
+      <div class="section-label">Selected Work</div>
+      <ol id="work" class="numbered">
+        <li>
+          <div>
+            <div class="title">Gist</div>
+            <div class="tagline">
+              A daily personalized morning briefing built on Firebase Functions
+              and the Claude API. Parallel connector fan-out, scheduled cron,
+              batched LLM classification.
+            </div>
+            <div class="links">
+              <a href="#">Case study</a><a href="#">Live</a><a href="#">Source</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">MOYE</div>
+            <div class="tagline">
+              An online record store for the artist MOYE. Custom checkout
+              backend, an audio player that survives every page navigation,
+              and a hand-tuned hover language.
+            </div>
+            <div class="links">
+              <a href="#">Case study</a><a href="#">Live</a><a href="#">Source</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">Beauty Forward</div>
+            <div class="tagline">
+              Donation logistics platform for beauty product redistribution.
+              Two production apps &mdash; donation pickup orchestration and
+              AI-assisted inventory &mdash; plus a shelter analytics layer in
+              design.
+            </div>
+            <div class="links">
+              <a href="#">Case study</a><a href="#">Live</a><a href="#">Press</a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">Waeve</div>
+            <div class="tagline">
+              DTC wig brand for Black women I co-founded in 2018. $2M seed,
+              launched June 2021, scaled to nine people, wound down in 2024.
+            </div>
+            <div class="links">
+              <a href="#">Case study</a><a href="#">Live</a><a href="#">Press</a>
+            </div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="section-label">Writing</div>
+      <ol id="writing" class="numbered">
+        <li>
+          <div>
+            <div class="title">How I think about cross-cutting orchestration</div>
+            <div class="meta">2026-05-20 · 7 min read</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">Notes on the Shopify revert at Waeve</div>
+            <div class="meta">2026-04-12 · 4 min read</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">What I learned shipping HIPAA APIs at 22</div>
+            <div class="meta">2026-03-01 · 6 min read</div>
+          </div>
+        </li>
+      </ol>
+
+      <div class="section-label">Recorded</div>
+      <ol id="recorded" class="numbered">
+        <li>
+          <div>
+            <div class="title">Williams Women's Conference keynote</div>
+            <div class="meta">2025-09 · YouTube</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">Drake of the Day, explained</div>
+            <div class="meta">2024-11 · YouTube</div>
+          </div>
+        </li>
+        <li>
+          <div>
+            <div class="title">Today Show segment &mdash; Waeve launch</div>
+            <div class="meta">2021-06 · Today.com</div>
+          </div>
+        </li>
+      </ol>
+
+      <footer id="contact">
+        <div>Mary Imevbore · Brooklyn, NY</div>
+        <div class="reach">
+          <a href="mailto:mimevbore14@gmail.com">Email</a>
+          <a href="#">LinkedIn</a>
+          <a href="#">GitHub</a>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>
