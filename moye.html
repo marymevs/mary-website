@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -21,8 +21,8 @@
       <h1 class="case-study-title">MOYE</h1>
       <p class="case-study-tagline">
         An online record store for the artist MOYE. Custom checkout backend, an
-        audio player that survives every page navigation, and a hand-tuned
-        hover language.
+        audio player that survives every page navigation, and a hand-tuned hover
+        language.
       </p>
 
       <section class="case-study-section">
@@ -37,9 +37,9 @@
         </p>
         <p>
           MOYE's site is a custom Angular SSR build that owns its own checkout
-          backend, runs a persistent audio player outside the router outlet,
-          and treats hover and cursor behavior as part of the visual identity
-          rather than browser default.
+          backend, runs a persistent audio player outside the router outlet, and
+          treats hover and cursor behavior as part of the visual identity rather
+          than browser default.
         </p>
       </section>
 
@@ -53,15 +53,15 @@
           <li>Vitest</li>
         </ul>
         <p>
-          The frontend is an Angular SSR app deployed via Firebase Hosting.
-          Cart state lives in a root-scoped signal-based service with
-          localStorage persistence. Checkout posts to a Firebase Function that
-          re-fetches prices and validates stock against Firestore, builds line
-          items server-side, writes a pending order, then creates a Stripe
-          payment session. A webhook flips the order to paid once Stripe
-          confirms. The audio player is a singleton service plus a single
-          persistent <code>&lt;audio&gt;</code> element mounted outside the
-          router outlet &mdash; playback continues across every navigation.
+          The frontend is an Angular SSR app deployed via Firebase Hosting. Cart
+          state lives in a root-scoped signal-based service with localStorage
+          persistence. Checkout posts to a Firebase Function that re-fetches
+          prices and validates stock against Firestore, builds line items
+          server-side, writes a pending order, then creates a Stripe payment
+          session. A webhook flips the order to paid once Stripe confirms. The
+          audio player is a singleton service plus a single persistent
+          <code>&lt;audio&gt;</code> element mounted outside the router outlet
+          &mdash; playback continues across every navigation.
         </p>
       </section>
 
@@ -77,13 +77,17 @@
               re-fetches prices from Firestore on every checkout and validates
               stock before building Stripe-bound line items &mdash; the client
               is never trusted on price.
-              <span class="file-path">functions/src/index.ts:114&ndash;124</span>
+              <span class="file-path"
+                >functions/src/index.ts:114&ndash;124</span
+              >
               writes a pending order ledger before the Stripe session is
               created, and
-              <span class="file-path">functions/src/index.ts:178&ndash;204</span>
-              flips it to paid in the webhook. Stripe handles payment; MOYE
-              owns session orchestration, validation, and the order record.
-              That tradeoff &mdash; more backend code in exchange for end-to-end
+              <span class="file-path"
+                >functions/src/index.ts:178&ndash;204</span
+              >
+              flips it to paid in the webhook. Stripe handles payment; MOYE owns
+              session orchestration, validation, and the order record. That
+              tradeoff &mdash; more backend code in exchange for end-to-end
               control of pricing, inventory, and the post-payment hook &mdash;
               is the whole reason not to use Stripe Checkout's hosted form.
             </p>
@@ -139,8 +143,8 @@
             <code>&lt;audio&gt;</code> element with browser-native progressive
             download &mdash; no chunked range requests, no hover prefetch, no
             in-memory buffer. For high-fidelity tracks this gets sluggish.
-            Chunked range-request streaming plus hover prefetch is the next
-            perf win.
+            Chunked range-request streaming plus hover prefetch is the next perf
+            win.
           </li>
         </ul>
       </section>
@@ -164,7 +168,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer id="get-in-touch">
       <h1>Get in touch</h1>
       <form action="#">
         <div>
@@ -172,12 +176,12 @@
           <input type="text" id="name" name="user_name" />
         </div>
         <div>
-          <label for="name">Email</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="email">Email</label>
+          <input type="text" id="email" name="user_name" />
         </div>
         <div>
-          <label for="name">How can I help?</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="message">How can I help?</label>
+          <input type="text" id="message" name="user_name" />
         </div>
       </form>
     </footer>

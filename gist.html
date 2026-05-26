@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -81,9 +81,11 @@
               >Resilient batch with <code>allSettled</code></span
             >
             <p class="decision-why">
-              <span class="file-path">generateMorningGist.ts:384&ndash;437</span>
-              is the scheduled fan-out: an <code>onSchedule</code> cron every
-              15 minutes, then <code>Promise.allSettled</code> &mdash; not
+              <span class="file-path"
+                >generateMorningGist.ts:384&ndash;437</span
+              >
+              is the scheduled fan-out: an <code>onSchedule</code> cron every 15
+              minutes, then <code>Promise.allSettled</code> &mdash; not
               <code>Promise.all</code> &mdash; over the eligible users. One
               user's expired Gmail token or rate-limited connector shouldn't
               tank the whole batch, and a settled batch means failures surface
@@ -91,9 +93,13 @@
             </p>
           </li>
           <li>
-            <span class="decision-title">Idempotency on <code>lastGeneratedDate</code></span>
+            <span class="decision-title"
+              >Idempotency on <code>lastGeneratedDate</code></span
+            >
             <p class="decision-why">
-              <span class="file-path">generateMorningGist.ts:418&ndash;425</span>
+              <span class="file-path"
+                >generateMorningGist.ts:418&ndash;425</span
+              >
               short-circuits when <code>lastGeneratedDate === todayKey</code>.
               Cron retries and overlapping invocations are a real failure mode
               when an upstream API is slow; without this guard the same user
@@ -108,8 +114,8 @@
               defines a <code>mapWithConcurrency</code> helper that caps
               in-flight Gmail requests. Gmail's per-user rate limits are tight
               and a single user with a busy inbox can otherwise consume the
-              quota the rest of the batch needs. A small concurrency limit
-              keeps every user's connector call inside the budget.
+              quota the rest of the batch needs. A small concurrency limit keeps
+              every user's connector call inside the budget.
             </p>
           </li>
           <li>
@@ -118,8 +124,8 @@
               <span class="file-path">gmailInt.ts:816</span>
               passes many candidate emails into a single Claude call instead of
               one call per email. At the batch sizes Gist uses there's no
-              quality cliff, and the per-classification cost drops by roughly
-              an order of magnitude.
+              quality cliff, and the per-classification cost drops by roughly an
+              order of magnitude.
             </p>
           </li>
         </ul>
@@ -135,9 +141,9 @@
             briefing prose.
           </li>
           <li>
-            Anthropic prompt caching. System prompts and connector summaries
-            are stable across users and days &mdash; caching them cuts
-            input-token cost meaningfully.
+            Anthropic prompt caching. System prompts and connector summaries are
+            stable across users and days &mdash; caching them cuts input-token
+            cost meaningfully.
           </li>
           <li>
             Per-user token budgets. No circuit breaker on runaway prompt size
@@ -146,8 +152,8 @@
           </li>
           <li>
             Pub/Sub for queued work. The current shape is scheduler plus
-            on-demand HTTPS. Long-running or retryable tasks would benefit
-            from a real queue rather than ad-hoc retry logic.
+            on-demand HTTPS. Long-running or retryable tasks would benefit from
+            a real queue rather than ad-hoc retry logic.
           </li>
         </ul>
       </section>
@@ -171,7 +177,7 @@
       </section>
     </main>
 
-    <footer>
+    <footer id="get-in-touch">
       <h1>Get in touch</h1>
       <form action="#">
         <div>
@@ -179,12 +185,12 @@
           <input type="text" id="name" name="user_name" />
         </div>
         <div>
-          <label for="name">Email</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="email">Email</label>
+          <input type="text" id="email" name="user_name" />
         </div>
         <div>
-          <label for="name">How can I help?</label>
-          <input type="text" id="name" name="user_name" />
+          <label for="message">How can I help?</label>
+          <input type="text" id="message" name="user_name" />
         </div>
       </form>
     </footer>
