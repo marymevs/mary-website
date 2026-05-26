@@ -108,3 +108,24 @@ main h2 {
 .work-cards--preview .work-card-links {
   font-size: 12px;
 }
+
+#see-more-button {
+  margin: 1rem 0;
+  border: 2px white solid;
+  height: 3rem;
+  width: 10rem;
+  padding: 10px;
+  border-radius: 3px;
+  text-decoration: none;
+}
+
+#see-more-button:hover {
+  background-color: white;
+  div {
+    color: black;
+  }
+}
+
+#see-more-button div {
+  color: white;
+}
