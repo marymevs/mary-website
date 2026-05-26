@@ -1,15 +1,15 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Mary's Website</title>
+    <title>Mary Imevbore — Resume</title>
     <link rel="stylesheet" href="./styles.css" />
     <link rel="stylesheet" href="./resume.css" />
   </head>
   <body>
     <header>
-      <h3>Mary Imevbore</h3>
+      <a href="./index.html"><h3>Mary Imevbore</h3></a>
       <nav>
         <a href="./works.html">Selected Work</a>
         <a href="./resume.html">Resume</a>
@@ -17,47 +17,280 @@
       </nav>
     </header>
     <main>
-      <section class="print-buttons">
-        <div><a onclick="window.print()">Download a PDF</a></div>
-        <div><a onclick="window.print()">Download a .docx</a></div>
-      </section>
-      <section id="professional-experience">
-        <h1>Professional Experience</h1>
-        <h2>Mauris vel sapien turpis. Nam non porta nisl. Donec sed.</h2>
-        <ul>
-          <li>Aenean id auctor erat, non feugiat ex. Nulla ut urna.</li>
-          <li>Sed mattis tellus suscipit, semper ipsum ut, gravida elit.</li>
-          <li>Nunc dignissim urna dapibus magna condimentum, quis maximus.</li>
-          <li>Mauris dictum orci sit amet porta semper. Sed et dictum.</li>
-          <li>Phasellus sit amet varius sem. Integer euismod egestas ut.</li>
-        </ul>
-      </section>
-      <section id="education">
-        <h1>Education</h1>
-        <h2>Mauris vel sapien turpis. Nam non porta nisl. Donec sed.</h2>
-        <ul>
-          <li>Aenean id auctor erat, non feugiat ex. Nulla ut urna.</li>
-          <li>Sed mattis tellus suscipit, semper ipsum ut, gravida elit.</li>
-          <li>Nunc dignissim urna dapibus magna condimentum, quis maximus.</li>
-          <li>Mauris dictum orci sit amet porta semper. Sed et dictum.</li>
-          <li>Phasellus sit amet varius sem. Integer euismod egestas ut.</li>
-        </ul>
-      </section>
       <section>
-        <h1>Techincal Expertise</h1>
+        <h1>Mary Imevbore</h1>
+        <p class="resume-contact">
+          Brooklyn, NY &middot;
+          <a href="mailto:mimevbore14@gmail.com">mimevbore14@gmail.com</a>
+          &middot;
+          <a
+            href="https://linkedin.com/in/mary-imevbore"
+            target="_blank"
+            rel="noopener noreferrer"
+            >LinkedIn</a
+          >
+          &middot;
+          <a
+            href="https://github.com/marymevs"
+            target="_blank"
+            rel="noopener noreferrer"
+            >GitHub</a
+          >
+        </p>
+        <p class="resume-summary">
+          Senior software engineer with production experience at Amazon Pharmacy
+          (formerly PillPack) and a founder background &mdash; raised $2M in
+          venture capital and took a D2C product from zero to market. Currently
+          building and shipping full-stack applications (Angular, Firebase,
+          Node.js) as both a solo technical founder and a consulting engineer.
+          Product intuition and systems thinking matter as much as code quality.
+        </p>
+      </section>
+
+      <section>
+        <h1>Professional Experience</h1>
+
+        <h2 class="resume-headline">
+          Consulting Engineer &mdash; Beauty Forward &mdash; Brooklyn, NY
+          &mdash; 2026&ndash;Present
+        </h2>
         <ul>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
-          <li>Aenean nec commodo.</li>
+          <li>
+            Designing and engineering the full platform for a beauty startup
+            from the ground up. Built an Uber-style courier system, warehouse
+            management system, and data visualization dashboard.
+          </li>
+          <li>
+            Sole engineer on the project, responsible for architecture
+            decisions, database design, API development, and front-end
+            implementation.
+          </li>
+          <li>
+            Stack: TypeScript, Angular 21, Firebase (Firestore, Cloud Functions,
+            Data Connect), Vertex AI (Gemini), Google Cloud Platform.
+          </li>
+        </ul>
+        <p class="case-study-link">
+          <a href="./beauty-forward.html">Read the case study &rarr;</a>
+        </p>
+
+        <h2 class="resume-headline">
+          Founder &amp; CEO &mdash; Waeve &mdash; Boston, MA &mdash;
+          2020&ndash;2024
+        </h2>
+        <ul>
+          <li>
+            Raised $2M in venture capital from Pillar VC, Maveron, and angel
+            investors including former Glossier executives. Led a team of 8
+            across engineering, brand, and operations.
+          </li>
+          <li>
+            Made all technical platform decisions: selected and configured
+            Shopify as the commerce layer, evaluated and attempted a migration
+            to a headless commerce architecture in collaboration with Glossier's
+            CTO, and managed the rollback when the integration proved premature
+            for our scale.
+          </li>
+          <li>
+            Designed and prototyped a virtual try-on feature using Blender and
+            8th Wall (WebAR), writing the product spec and collaborating with a
+            contract engineer to ship the initial version.
+          </li>
+          <li>
+            Managed the full product lifecycle: vendor selection, technical
+            scoping, QA, and launch. Operated as the bridge between
+            non-technical cofounders and external engineering resources.
+          </li>
+          <li>
+            Featured in Vogue, The Today Show, and Essence. Won $30K across
+            Williams College and MIT Sandbox pitch competitions.
+          </li>
+        </ul>
+        <p class="case-study-link">
+          <a href="./waeve.html">Read the case study &rarr;</a>
+        </p>
+
+        <h2 class="resume-headline">
+          Software Engineer &mdash; PillPack / Amazon Pharmacy &mdash; Boston,
+          MA &mdash; 2018&ndash;2020
+        </h2>
+        <ul>
+          <li>
+            Built APIs for the billing microservice, writing secure,
+            HIPAA-compliant code that handled insurance claims processing,
+            payment workflows, and regulatory data.
+          </li>
+          <li>
+            Contributed to the migration from a monolithic Ruby application to a
+            microservices architecture in Go during PillPack's integration into
+            Amazon Pharmacy.
+          </li>
+          <li>
+            Participated in high-level systems design discussions with Amazon
+            teams in Seattle, contributing to architecture decisions for the new
+            pharmacy platform.
+          </li>
+          <li>
+            Grew from a team of 3 to managing a scope that covered a team of 10,
+            accumulating significant ownership and responsibility for someone
+            two years out of college.
+          </li>
+          <li>
+            Obtained HIPAA certification and implemented secure workflows
+            meeting pharmacy industry and insurance compliance standards.
+          </li>
         </ul>
       </section>
+
+      <section>
+        <h1>Technical Projects</h1>
+
+        <h2>Gist &mdash; 2025&ndash;Present</h2>
+        <ul>
+          <li>
+            Solo-built a full-stack application that pulls a user's Gmail,
+            Google Calendar, news, and weather, then generates a personalized
+            AI-condensed morning briefing.
+          </li>
+          <li>
+            Integrated Stripe (subscriptions + webhooks), Claude (briefing
+            generation), Gmail/Calendar OAuth (server-side code exchange), and
+            Resend (transactional email).
+          </li>
+          <li>
+            Built with Angular 17 (standalone components), Firebase (Firestore,
+            Cloud Functions, Auth), and TypeScript. Designed a fail-open billing
+            gate, idempotency on duplicate generation, and Firestore security
+            rules.
+          </li>
+        </ul>
+        <p class="case-study-link">
+          <a href="./gist.html">Read the case study &rarr;</a>
+        </p>
+      </section>
+
+      <section>
+        <h1>Technical Expertise</h1>
+
+        <h2>Languages</h2>
+        <p>Go, TypeScript / JavaScript, Ruby, SQL, HTML / CSS</p>
+
+        <h2>Frameworks &amp; Tools</h2>
+        <p>
+          Angular, React, Node.js, Firebase, AWS, Google Cloud Platform, Docker,
+          Git
+        </p>
+
+        <h2>Specializations</h2>
+        <p>
+          Microservices Architecture, Systems Design, API Development,
+          Distributed Systems, OAuth / Webhooks, Stripe / Payment Integrations
+        </p>
+      </section>
+
+      <section>
+        <h1>Education</h1>
+
+        <h2>
+          Williams College &mdash; Williamstown, MA &mdash; 2014&ndash;2018
+        </h2>
+        <ul>
+          <li>Bachelor of Arts in Computer Science and Political Science</li>
+          <li>
+            Williams Business Plan Challenge winner &mdash; $30K combined across
+            Williams College and MIT Sandbox pitch competitions (2018)
+          </li>
+        </ul>
+      </section>
+
+      <section id="speaking-recognition">
+        <h1>Speaking &amp; Recognition</h1>
+
+        <h2>Speaking</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.youtube.com/watch?v=MGC9Jpb2610&feature=youtu.be"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Williams College inaugural Women's Conference</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://vimeo.com/806445164"
+              target="_blank"
+              rel="noopener noreferrer"
+              >High school keynote</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.today.com/video/meet-the-founder-of-wig-company-waeve-119952453832"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Today Show (segment aired twice)</a
+            >
+          </li>
+        </ul>
+
+        <h2>Recognition</h2>
+        <ul>
+          <li>
+            <a
+              href="https://www.bizjournals.com/boston/inno/stories/inno-insights/2021/09/14/bostinno-s-25-under-25-the-bay-states-youngest-a.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Boston Inno 25 Under 25, 2021</a
+            >
+          </li>
+        </ul>
+
+        <h2>Press</h2>
+        <ul class="press-headlines">
+          <li>
+            <a
+              href="https://www.today.com/video/meet-the-founder-of-wig-company-waeve-119952453832"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Today Show</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.vogue.com/article/waeve-is-changing-the-way-black-women-experiment-with-wigs"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Vogue</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.thecut.com/2021/07/tastemakers-mary-imevbore-ceo-and-co-founder-of-waeve.html"
+              target="_blank"
+              rel="noopener noreferrer"
+              >The Cut</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.bostonglobe.com/2021/06/22/business/wigs-are-next-big-thing-boston-beauty-startup-wants-make-buying-process-easier-black-women/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Boston Globe</a
+            >
+          </li>
+          <li>
+            <a
+              href="https://www.essence.com/beauty/waeve-wig-line-ode-to-black-women/"
+              target="_blank"
+              rel="noopener noreferrer"
+              >Essence</a
+            >
+          </li>
+        </ul>
+      </section>
+
       <section class="print-buttons">
         <div><a onclick="window.print()">Download a PDF</a></div>
         <div><a onclick="window.print()">Download a .docx</a></div>

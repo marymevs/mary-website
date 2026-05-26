@@ -6,6 +6,50 @@ main {
   margin-top: 100px;
 }
 
+.resume-contact {
+  margin-top: 12px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.resume-contact a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.resume-contact a:hover {
+  border-bottom-style: solid;
+}
+
+.resume-summary {
+  margin-top: 24px;
+  max-width: 75ch;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+.resume-headline {
+  margin-top: 1.5rem;
+}
+
+/* Small "Read the case study →" link that follows each job's bullet list
+   in Professional Experience and Technical Projects. */
+.case-study-link {
+  margin-top: 10px;
+  font-size: 14px;
+}
+
+.case-study-link a {
+  color: white;
+  text-decoration: none;
+  border-bottom: 1px dotted currentColor;
+}
+
+.case-study-link a:hover {
+  border-bottom-style: solid;
+}
+
 .print-buttons {
   display: flex;
   justify-content: space-around;
@@ -18,20 +62,6 @@ main {
   padding: 10px;
 }
 
-/* Speaking & Recognition section — appended above the bottom print buttons.
-   Reuses the section h1 cadence of the existing resume sections, with h2
-   repurposed as a sub-section label (Speaking / Recognition / Press).
-   Expected structure:
-     <section id="speaking-recognition">
-       <h1>Speaking & Recognition</h1>
-       <h2>Speaking</h2>
-       <ul><li><a>…</a></li></ul>
-       <h2>Recognition</h2>
-       <ul><li><a>…</a></li></ul>
-       <h2>Press</h2>
-       <ul class="press-headlines"><li><a>…</a></li>…</ul>
-     </section>
-*/
 #speaking-recognition h2 {
   margin-top: 28px;
   font-size: 22px;
