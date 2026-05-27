@@ -352,6 +352,8 @@ nav.primary a:hover {
 .tag.live    { color: var(--tag-amber); border-color: var(--tag-amber); }
 .tag.archive { color: var(--tag-blue);  border-color: var(--tag-blue); }
 .tag.press   { color: var(--tag-red);   border-color: var(--tag-red); }
+.tag.read    { color: var(--tag-green); border-color: var(--tag-green); }
+.tag.watch   { color: var(--tag-amber); border-color: var(--tag-amber); }
 
 .tagline {
   font-family: var(--sans);
@@ -383,6 +385,15 @@ nav.primary a:hover {
   content: " · ";
   margin: 0 0.3ch;
   color: var(--border-strong);
+}
+
+.meta {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-top: 6px;
 }
 
 /* "See more →" link below a list. Right-aligned mono kicker. */
