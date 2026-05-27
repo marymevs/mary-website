@@ -185,3 +185,92 @@ nav.primary a:hover {
     gap: 8px;
   }
 }
+
+/* ── hero ──────────────────────────────────────────────── */
+
+.hero {
+  margin-top: 64px;
+}
+
+.hero .kicker {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tag-amber);
+  margin-bottom: 16px;
+}
+
+.hero h1 {
+  font-family: var(--serif);
+  font-size: 72px;
+  line-height: 1;
+  letter-spacing: -0.015em;
+  color: var(--ink-strong);
+  font-weight: 400;
+  margin-bottom: 32px;
+}
+
+.hero .lede {
+  font-family: var(--sans);
+  font-size: 17px;
+  line-height: 1.65;
+  max-width: 60ch;
+  color: var(--ink);
+}
+
+.hero .personality {
+  margin-top: 20px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 20px;
+  color: var(--muted);
+}
+
+/* ── press strip ───────────────────────────────────────── */
+
+.press {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+  color: var(--muted);
+}
+
+.press .label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tag-red);
+  margin-right: 10px;
+}
+
+.press ul {
+  list-style: none;
+  display: inline;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink);
+}
+
+.press ul li {
+  display: inline;
+}
+
+.press ul li:not(:last-child)::after {
+  content: " · ";
+  margin: 0 0.3ch;
+  color: var(--border-strong);
+}
+
+.press a {
+  border-bottom-color: var(--border);
+}
+
+@media (max-width: 600px) {
+  .hero h1 {
+    font-size: 52px;
+  }
+}
