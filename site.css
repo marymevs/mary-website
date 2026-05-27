@@ -536,6 +536,84 @@ footer .stamp {
   flex-wrap: wrap;
 }
 
+/* ── numbered notes list (essays, case studies, anywhere) ─── */
+
+.notes {
+  list-style: none;
+  margin-top: 8px;
+  counter-reset: notes-counter;
+}
+
+.notes > li {
+  counter-increment: notes-counter;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.notes > li:last-child {
+  border-bottom: none;
+}
+
+.notes > li::before {
+  content: counter(notes-counter, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  align-self: start;
+  padding-top: 4px;
+}
+
+.notes strong {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+
+.notes p {
+  margin: 0;
+}
+
+.notes p + p {
+  margin-top: 8px;
+}
+
+/* ── draft notice + back link (essay stub pages, etc.) ────── */
+
+.draft-notice {
+  margin-top: 32px;
+  padding: 14px 18px;
+  background: var(--surface-alt);
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--tag-amber);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  line-height: 1.7;
+  color: var(--muted);
+}
+
+.back-link {
+  margin-top: 64px;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.back-link a {
+  color: var(--muted);
+  border-bottom: none;
+}
+
+.back-link a:hover {
+  color: var(--ink-strong);
+}
+
 /* ── print: invert palette to ink-on-paper, hide chrome ──── */
 
 @media print {

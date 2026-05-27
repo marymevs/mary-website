@@ -8,8 +8,6 @@
    - .stack        inline mono middle-dot stack list (Architecture)
    - .decisions    vertical list of technical decisions with kicker,
                    title, body paragraphs
-   - .notes        numbered editorial bullet list ("What's next",
-                   "What I learned")
    - code, .path   inline mono chips for code identifiers and
                    file:line references
 
@@ -88,52 +86,6 @@
   font-size: 15px;
   line-height: 1.65;
   color: var(--ink);
-}
-
-/* ── notes list (What's next, What I learned) ──────────── */
-
-.notes {
-  list-style: none;
-  margin-top: 8px;
-  counter-reset: notes-counter;
-}
-
-.notes > li {
-  counter-increment: notes-counter;
-  padding: 16px 0;
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: 40px 1fr;
-  gap: 16px;
-  font-size: 16px;
-  line-height: 1.6;
-}
-
-.notes > li:last-child {
-  border-bottom: none;
-}
-
-.notes > li::before {
-  content: counter(notes-counter, decimal-leading-zero);
-  font-family: var(--mono);
-  font-size: 11px;
-  letter-spacing: 0.18em;
-  color: var(--muted);
-  align-self: start;
-  padding-top: 4px;
-}
-
-.notes strong {
-  color: var(--ink-strong);
-  font-weight: 600;
-}
-
-.notes p {
-  margin: 0;
-}
-
-.notes p + p {
-  margin-top: 8px;
 }
 
 /* ── inline mono chips: code identifiers + file:line refs ── */
