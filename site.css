@@ -5,12 +5,12 @@
    paper grain overlay, base elements, and every component class
    that appears on more than one page.
 
-   Page-specific styles live in their own files (home.css for
-   the homepage press strip, contact.css for the reach list, etc.)
-   and are linked AFTER this file so they can override.
+   Page-specific styles live in their own files (case-study.css
+   for the four project deep-dives, etc.) and are linked AFTER
+   this file so they can override.
 
-   Old monospace styles.css is left intact for now — case studies
-   and resume still use it until they migrate in Phase 3/4.
+   Old monospace styles.css is left intact for now — resume.html
+   still uses it until Phase 4.
    ───────────────────────────────────────────────────────── */
 
 :root {
@@ -76,7 +76,9 @@ body::before {
   mix-blend-mode: overlay;
 }
 
-h1, h2, h3 {
+h1,
+h2,
+h3 {
   font-family: var(--serif);
   font-weight: 400;
   color: var(--ink-strong);
@@ -92,7 +94,9 @@ a {
   color: var(--ink);
   text-decoration: none;
   border-bottom: 1px solid var(--border-strong);
-  transition: color 0.12s ease-out, border-color 0.12s ease-out;
+  transition:
+    color 0.12s ease-out,
+    border-color 0.12s ease-out;
 }
 
 a:hover {
@@ -100,7 +104,8 @@ a:hover {
   border-bottom-color: var(--ink-strong);
 }
 
-ul, ol {
+ul,
+ol {
   list-style: none;
 }
 
@@ -170,6 +175,7 @@ nav.primary {
   font-size: 11px;
   letter-spacing: 0.16em;
   text-transform: uppercase;
+  justify-content: flex-end;
 }
 
 nav.primary a {
@@ -309,19 +315,49 @@ nav.primary a:hover {
   flex-shrink: 0;
 }
 
-.tag.current { color: var(--tag-green); border-color: var(--tag-green); }
-.tag.live    { color: var(--tag-amber); border-color: var(--tag-amber); }
-.tag.archive { color: var(--tag-blue);  border-color: var(--tag-blue); }
-.tag.press   { color: var(--tag-red);   border-color: var(--tag-red); }
-.tag.read    { color: var(--tag-green); border-color: var(--tag-green); }
-.tag.watch   { color: var(--tag-amber); border-color: var(--tag-amber); }
+.tag.current {
+  color: var(--tag-green);
+  border-color: var(--tag-green);
+}
+.tag.live {
+  color: var(--tag-amber);
+  border-color: var(--tag-amber);
+}
+.tag.archive {
+  color: var(--tag-blue);
+  border-color: var(--tag-blue);
+}
+.tag.press {
+  color: var(--tag-red);
+  border-color: var(--tag-red);
+}
+.tag.read {
+  color: var(--tag-green);
+  border-color: var(--tag-green);
+}
+.tag.watch {
+  color: var(--tag-amber);
+  border-color: var(--tag-amber);
+}
 
 /* Tech-stack tag categories for case study hero strips.
    Same palette, different semantic axis (technology vs. status). */
-.tag.lang    { color: var(--tag-green); border-color: var(--tag-green); }
-.tag.infra   { color: var(--tag-blue);  border-color: var(--tag-blue); }
-.tag.ai      { color: var(--tag-amber); border-color: var(--tag-amber); }
-.tag.role    { color: var(--tag-red);   border-color: var(--tag-red); }
+.tag.lang {
+  color: var(--tag-green);
+  border-color: var(--tag-green);
+}
+.tag.infra {
+  color: var(--tag-blue);
+  border-color: var(--tag-blue);
+}
+.tag.ai {
+  color: var(--tag-amber);
+  border-color: var(--tag-amber);
+}
+.tag.role {
+  color: var(--tag-red);
+  border-color: var(--tag-red);
+}
 
 /* Tag strip — horizontal row of tags, used below a hero lede to
    signal stack/domain at a scan. */
@@ -393,9 +429,68 @@ nav.primary a:hover {
 }
 
 @media (max-width: 600px) {
-  .section-head h2 { font-size: 28px; }
-  .row-title { font-size: 22px; }
-  .row-head { flex-direction: column; align-items: flex-start; gap: 8px; }
+  .section-head h2 {
+    font-size: 28px;
+  }
+  .row-title {
+    font-size: 22px;
+  }
+  .row-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+}
+
+/* ── imprint + press strip ─────────────────────────────────
+   .imprint     — homepage hero outro: "AS SEEN IN" label + inline
+                  publication list, with a thin rule above.
+   .press-strip — italic serif middle-dot publication list. Used
+                  standalone (Waeve press section) and inline inside
+                  .imprint (homepage). Add `.inline` to flow inline.
+   ───────────────────────────────────────────────────────── */
+
+.imprint {
+  margin-top: 40px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+}
+
+.imprint .label {
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--tag-red);
+  margin-right: 10px;
+}
+
+.press-strip {
+  list-style: none;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 17px;
+  color: var(--ink);
+  line-height: 1.7;
+}
+
+.press-strip.inline {
+  display: inline;
+}
+
+.press-strip li {
+  display: inline;
+}
+
+.press-strip li:not(:last-child)::after {
+  content: " · ";
+  margin: 0 0.3ch;
+  color: var(--border-strong);
+}
+
+.press-strip a {
+  border-bottom-color: var(--border);
 }
 
 /* ── footer: reach links + production stamp ────────────── */
