@@ -3,156 +3,190 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>MOYE — Mary Imevbore</title>
-    <link rel="stylesheet" href="./styles.css" />
+    <title>MOYE — Case study — Mary Imevbore</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&family=Geist+Mono:wght@400;500&display=swap"
+    />
+    <link rel="stylesheet" href="./site.css" />
     <link rel="stylesheet" href="./case-study.css" />
   </head>
   <body>
-    <header>
-      <a href="./index.html"><h3>Mary Imevbore</h3></a>
-      <nav>
-        <a href="./index.html">Home</a>
-        <a href="./works.html">Selected Work</a>
-        <a href="./resume.html">Resume</a>
-        <a href="./get-in-touch.html">Get In Touch</a>
-      </nav>
-    </header>
+    <div class="page">
+      <header>
+        <div class="masthead">
+          <a href="./index.html" class="title">Mary Imevbore</a>
+          <div class="issue">Vol. I · No. 01 · May 2026</div>
+        </div>
+        <div class="rhythms">
+          <span>Brooklyn, NY</span>
+          <span>Est. 1996</span>
+          <span>Last updated May 2026</span>
+        </div>
+        <nav class="primary">
+          <a href="./works.html">Work</a>
+          <a href="./index.html#writing">Writing</a>
+          <a href="./index.html#recorded">Recorded</a>
+          <a href="./get-in-touch.html">Contact</a>
+        </nav>
+      </header>
+      <main>
+        <section class="hero">
+          <div class="kicker">§ — Case Study · Engineering</div>
+          <h1>MOYE</h1>
+          <p class="lede">
+            An online record store for the artist MOYE. Custom checkout
+            backend, an audio player that survives every page navigation, and
+            a hand-tuned hover language.
+          </p>
+          <div class="tag-strip">
+            <span class="tag lang">TypeScript</span>
+            <span class="tag lang">Angular</span>
+            <span class="tag infra">Firebase</span>
+            <span class="tag infra">Stripe</span>
+            <span class="tag role">E-Commerce</span>
+          </div>
+        </section>
 
-    <main class="case-study">
-      <h1 class="case-study-title">MOYE</h1>
-      <p class="case-study-tagline">
-        An online record store for the artist MOYE. Custom checkout backend, an
-        audio player that survives every page navigation, and a hand-tuned hover
-        language.
-      </p>
+        <div class="section-head">
+          <div class="kicker">§ 01 — Problem</div>
+          <h2>Problem</h2>
+        </div>
+        <div class="case-body">
+          <p>
+            Off-the-shelf options for artist commerce &mdash; Shopify,
+            Bandcamp, Big Cartel &mdash; are templated and constrained. They
+            limit creative direction, impose a particular checkout shape, and
+            don't preserve playback state across page transitions. For an
+            artist whose work treats the album as a visual and sonic
+            environment, the platform is part of the product.
+          </p>
+          <p>
+            MOYE's site is a custom Angular SSR build that owns its own
+            checkout backend, runs a persistent audio player outside the
+            router outlet, and treats hover and cursor behavior as part of
+            the visual identity rather than browser default.
+          </p>
+        </div>
 
-      <section class="case-study-section">
-        <h2 class="case-study-section-header">Problem</h2>
-        <p>
-          Off-the-shelf options for artist commerce &mdash; Shopify, Bandcamp,
-          Big Cartel &mdash; are templated and constrained. They limit creative
-          direction, impose a particular checkout shape, and don't preserve
-          playback state across page transitions. For an artist whose work
-          treats the album as a visual and sonic environment, the platform is
-          part of the product.
-        </p>
-        <p>
-          MOYE's site is a custom Angular SSR build that owns its own checkout
-          backend, runs a persistent audio player outside the router outlet, and
-          treats hover and cursor behavior as part of the visual identity rather
-          than browser default.
-        </p>
-      </section>
-
-      <section class="case-study-section">
-        <h2 class="case-study-section-header">Architecture</h2>
-        <ul class="case-study-stack">
+        <div class="section-head">
+          <div class="kicker">§ 02 — Architecture</div>
+          <h2>Architecture</h2>
+        </div>
+        <ul class="stack">
           <li>Angular 21 (with @angular/ssr)</li>
           <li>TypeScript 5.9</li>
           <li>Firebase 12 (Functions, Firestore, Storage)</li>
           <li>Express 5</li>
           <li>Vitest</li>
         </ul>
-        <p>
-          The frontend is an Angular SSR app deployed via Firebase Hosting. Cart
-          state lives in a root-scoped signal-based service with localStorage
-          persistence. Checkout posts to a Firebase Function that re-fetches
-          prices and validates stock against Firestore, builds line items
-          server-side, writes a pending order, then creates a Stripe payment
-          session. A webhook flips the order to paid once Stripe confirms. The
-          audio player is a singleton service plus a single persistent
-          <code>&lt;audio&gt;</code> element mounted outside the router outlet
-          &mdash; playback continues across every navigation.
-        </p>
-      </section>
+        <div class="case-body">
+          <p>
+            The frontend is an Angular SSR app deployed via Firebase Hosting.
+            Cart state lives in a root-scoped signal-based service with
+            localStorage persistence. Checkout posts to a Firebase Function
+            that re-fetches prices and validates stock against Firestore,
+            builds line items server-side, writes a pending order, then
+            creates a Stripe payment session. A webhook flips the order to
+            paid once Stripe confirms. The audio player is a singleton
+            service plus a single persistent <code>&lt;audio&gt;</code>
+            element mounted outside the router outlet &mdash; playback
+            continues across every navigation.
+          </p>
+        </div>
 
-      <section class="case-study-section">
-        <h2 class="case-study-section-header">Technical decisions</h2>
-        <ul class="case-study-decisions">
+        <div class="section-head">
+          <div class="kicker">§ 03 — Technical Decisions</div>
+          <h2>Technical decisions</h2>
+        </div>
+        <ul class="decisions">
           <li>
-            <span class="decision-title"
-              >Server-side cart validation, not Stripe Checkout</span
-            >
+            <div class="decision-title">
+              Server-side cart validation, not Stripe Checkout
+            </div>
             <p class="decision-why">
-              <span class="file-path">functions/src/index.ts:62&ndash;84</span>
-              re-fetches prices from Firestore on every checkout and validates
-              stock before building Stripe-bound line items &mdash; the client
-              is never trusted on price.
-              <span class="file-path"
-                >functions/src/index.ts:114&ndash;124</span
-              >
+              <span class="path">functions/src/index.ts:62&ndash;84</span>
+              re-fetches prices from Firestore on every checkout and
+              validates stock before building Stripe-bound line items
+              &mdash; the client is never trusted on price.
+              <span class="path">functions/src/index.ts:114&ndash;124</span>
               writes a pending order ledger before the Stripe session is
               created, and
-              <span class="file-path"
-                >functions/src/index.ts:178&ndash;204</span
-              >
-              flips it to paid in the webhook. Stripe handles payment; MOYE owns
-              session orchestration, validation, and the order record. That
-              tradeoff &mdash; more backend code in exchange for end-to-end
-              control of pricing, inventory, and the post-payment hook &mdash;
-              is the whole reason not to use Stripe Checkout's hosted form.
+              <span class="path">functions/src/index.ts:178&ndash;204</span>
+              flips it to paid in the webhook. Stripe handles payment; MOYE
+              owns session orchestration, validation, and the order record.
+              That tradeoff &mdash; more backend code in exchange for
+              end-to-end control of pricing, inventory, and the
+              post-payment hook &mdash; is the whole reason not to use
+              Stripe Checkout's hosted form.
             </p>
           </li>
           <li>
-            <span class="decision-title"
-              >Audio player outside the router outlet</span
-            >
+            <div class="decision-title">
+              Audio player outside the router outlet
+            </div>
             <p class="decision-why">
-              <span class="file-path"
+              <span class="path"
                 >web/src/app/core/services/audio-player.service.ts:13&ndash;22</span
               >
               is a <code>providedIn: 'root'</code> service holding
               <code>currentTrack</code>, <code>isPlaying</code>,
-              <code>position</code>, and <code>queue</code> as signals, backed
-              by a single persistent HTML <code>&lt;audio&gt;</code> element.
-              The player component is mounted at
-              <span class="file-path">web/src/app/app.html:7</span>
-              &mdash; outside <code>&lt;router-outlet&gt;</code> &mdash; so it
-              survives every route change. Without this shape the
-              <code>&lt;audio&gt;</code> element would unmount and reload on
-              navigation, losing position and rebuffering each time. With it,
-              the user keeps listening as they browse.
+              <code>position</code>, and <code>queue</code> as signals,
+              backed by a single persistent HTML
+              <code>&lt;audio&gt;</code> element. The player component is
+              mounted at
+              <span class="path">web/src/app/app.html:7</span>
+              &mdash; outside <code>&lt;router-outlet&gt;</code> &mdash; so
+              it survives every route change. Without this shape the
+              <code>&lt;audio&gt;</code> element would unmount and reload
+              on navigation, losing position and rebuffering each time.
+              With it, the user keeps listening as they browse.
             </p>
           </li>
           <li>
-            <span class="decision-title"
-              >Hover language as a first-class concern</span
-            >
+            <div class="decision-title">
+              Hover language as a first-class concern
+            </div>
             <p class="decision-why">
-              <span class="file-path">web/src/styles.scss:45&ndash;53</span>
+              <span class="path">web/src/styles.scss:45&ndash;53</span>
               defines custom SVG cursors with explicit hotspot coordinates
               &mdash; a default cursor and a separate hover cursor for
               <code>a, button</code>.
-              <span class="file-path"
+              <span class="path"
                 >web/src/app/features/home/sections/buy.section.ts:100&ndash;145</span
               >
               coordinates a scale-up on product art with a cursor-following
-              caption; signal-driven position updates keep the caption in sync
-              with the mouse. The interaction is choreographed, not browser
-              default &mdash; which matters when the site is supposed to feel
-              like part of the album, not a checkout page with merch on it.
+              caption; signal-driven position updates keep the caption in
+              sync with the mouse. The interaction is choreographed, not
+              browser default &mdash; which matters when the site is
+              supposed to feel like part of the album, not a checkout page
+              with merch on it.
             </p>
           </li>
         </ul>
-      </section>
 
-      <section class="case-study-section">
-        <h2 class="case-study-section-header">What's next</h2>
-        <ul class="case-study-bullets">
+        <div class="section-head">
+          <div class="kicker">§ 04 — What's Next</div>
+          <h2>What's next</h2>
+        </div>
+        <ol class="notes">
           <li>
-            WAV streaming. The current player uses a bare HTML
-            <code>&lt;audio&gt;</code> element with browser-native progressive
-            download &mdash; no chunked range requests, no hover prefetch, no
-            in-memory buffer. For high-fidelity tracks this gets sluggish.
-            Chunked range-request streaming plus hover prefetch is the next perf
-            win.
+            <p>
+              <strong>WAV streaming.</strong> The current player uses a bare
+              HTML <code>&lt;audio&gt;</code> element with browser-native
+              progressive download &mdash; no chunked range requests, no
+              hover prefetch, no in-memory buffer. For high-fidelity tracks
+              this gets sluggish. Chunked range-request streaming plus
+              hover prefetch is the next perf win.
+            </p>
           </li>
-        </ul>
-      </section>
+        </ol>
 
-      <section class="case-study-section">
-        <h2 class="case-study-section-header">Links</h2>
-        <div class="case-study-links">
+        <div class="section-head">
+          <div class="kicker">§ 05 — Links</div>
+          <h2>Links</h2>
+        </div>
+        <div class="links">
           <a
             href="https://moye-website--moye-website.us-east4.hosted.app/"
             target="_blank"
@@ -166,25 +200,19 @@
             >Source on GitHub</a
           >
         </div>
-      </section>
-    </main>
-
-    <footer id="get-in-touch">
-      <h1>Get in touch</h1>
-      <form action="#">
-        <div>
-          <label for="name">Name</label>
-          <input type="text" id="name" name="user_name" />
+      </main>
+      <footer>
+        <div class="reach">
+          <a href="mailto:mimevbore14@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/mary-imevbore/">LinkedIn</a>
+          <a href="https://github.com/marymevs">GitHub</a>
+          <a href="./resume.html">Resume</a>
         </div>
-        <div>
-          <label for="email">Email</label>
-          <input type="text" id="email" name="user_name" />
+        <div class="stamp">
+          <span>Prepared 2026-05-26 · Brooklyn, NY</span>
+          <span>[ 1 of 1 ]</span>
         </div>
-        <div>
-          <label for="message">How can I help?</label>
-          <input type="text" id="message" name="user_name" />
-        </div>
-      </form>
-    </footer>
+      </footer>
+    </div>
   </body>
 </html>
