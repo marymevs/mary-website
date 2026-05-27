@@ -339,6 +339,10 @@ nav.primary a:hover {
   color: var(--tag-amber);
   border-color: var(--tag-amber);
 }
+.tag.draft {
+  color: var(--tag-amber);
+  border-color: var(--tag-amber);
+}
 
 /* Tech-stack tag categories for case study hero strips.
    Same palette, different semantic axis (technology vs. status). */
