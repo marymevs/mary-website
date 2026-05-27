@@ -1,223 +1,183 @@
-/* Case study page layout. Used on gist.html, moye.html, beauty-forward.html
-   (engineering shape) and waeve.html (founder shape). Reuses header/footer
-   from styles.css. Page <main> gets class="case-study".
+/* ─────────────────────────────────────────────────────────
+   case-study.css — components specific to case study pages
 
-   Expected structure (sketched for reference):
+   Linked from gist.html, moye.html, beauty-forward.html (engineering
+   shape) and waeve.html (founder shape), AFTER site.css. Owns only
+   the components that are case-study-specific:
 
-   <main class="case-study">
-     <h1 class="case-study-title">…</h1>
-     <p class="case-study-tagline">…</p>
+   - .stack        inline mono middle-dot stack list (Architecture)
+   - .decisions    vertical list of technical decisions with kicker,
+                   title, body paragraphs
+   - .notes        numbered editorial bullet list ("What's next",
+                   "What I learned")
+   - code, .path   inline mono chips for code identifiers and
+                   file:line references
 
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">Problem</h2>
-       <p>…</p>
-     </section>
+   Anything reused outside case studies (hero, section-head, list,
+   tag, links, footer reach/stamp) lives in site.css.
+   ───────────────────────────────────────────────────────── */
 
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">Architecture</h2>
-       <ul class="case-study-stack"><li>Angular</li><li>TypeScript</li>…</ul>
-       <p>…narrative…</p>
-     </section>
+/* ── stack list (Architecture section) ─────────────────── */
 
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">Technical decisions</h2>
-       <ul class="case-study-decisions">
-         <li>
-           <span class="decision-title">Parallel connector fan-out</span>
-           <p class="decision-why">…</p>
-         </li>
-       </ul>
-     </section>
-
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">What's next</h2>
-       <ul class="case-study-bullets"><li>…</li></ul>
-     </section>
-
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">Links</h2>
-       <div class="case-study-links"><a href="…">Live</a>…</div>
-     </section>
-
-     <!-- Waeve only -->
-     <section class="case-study-section">
-       <h2 class="case-study-section-header">Press</h2>
-       <ul class="press-strip"><li><a href="…">Today Show</a></li>…</ul>
-     </section>
-   </main>
-*/
-
-main.case-study {
-  margin: 80px auto;
-  max-width: 72ch;
-  padding: 0 30px;
-  gap: 0;
-  display: block;
-}
-
-.case-study-title {
-  font-size: 48px;
-  font-weight: bold;
-  letter-spacing: 0.02em;
-  margin-bottom: 8px;
-}
-
-.case-study-tagline {
-  font-size: 16px;
-  opacity: 0.85;
-  margin-bottom: 48px;
-  line-height: 1.5;
-}
-
-.case-study-section {
-  margin-top: 36px;
-}
-
-.case-study-section-header {
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: 0.3em;
-  border-bottom: 1px solid white;
-  padding-bottom: 6px;
-  margin-bottom: 18px;
-  font-weight: bold;
-}
-
-.case-study-section p {
-  font-size: 15px;
-  line-height: 1.6;
-  margin-bottom: 12px;
-}
-
-.case-study-section p:last-child {
-  margin-bottom: 0;
-}
-
-/* Stack list — inline middle-dot separated for compactness */
-.case-study-stack {
+.stack {
   list-style: none;
-  padding: 0;
-  margin: 0 0 18px;
-  font-size: 14px;
-  line-height: 1.8;
+  margin: 0 0 24px;
+  padding: 12px 0;
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--muted);
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
 }
 
-.case-study-stack li {
+.stack li {
   display: inline;
 }
 
-.case-study-stack li:not(:last-child)::after {
-  content: " · ";
-  margin: 0 0.3ch;
-  opacity: 0.6;
+.stack li:not(:last-child)::after {
+  content: " ·";
+  margin-left: 16px;
+  color: var(--border-strong);
 }
 
-/* Technical decisions — each item is a "decision + the why" pair */
-.case-study-decisions {
+/* ── decisions list (Technical decisions section) ──────── */
+
+.decisions {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  margin-top: 16px;
+  counter-reset: decision-counter;
 }
 
-.case-study-decisions > li {
-  margin-bottom: 18px;
-  border-left: 2px solid white;
-  padding-left: 14px;
+.decisions > li {
+  padding: 28px 0;
+  border-bottom: 1px solid var(--border);
+  counter-increment: decision-counter;
 }
 
-.case-study-decisions > li:last-child {
-  margin-bottom: 0;
+.decisions > li:last-child {
+  border-bottom: none;
+}
+
+.decisions > li::before {
+  content: "[ " counter(decision-counter, decimal-leading-zero) " ]";
+  display: block;
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--tag-amber);
+  margin-bottom: 8px;
 }
 
 .decision-title {
-  font-weight: bold;
-  display: block;
-  margin-bottom: 4px;
-  font-size: 15px;
+  font-family: var(--serif);
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--ink-strong);
+  letter-spacing: -0.005em;
+  margin-bottom: 12px;
+  line-height: 1.2;
 }
 
 .decision-why {
-  font-size: 14px;
-  line-height: 1.55;
-  margin: 0;
+  font-family: var(--sans);
+  font-size: 15px;
+  line-height: 1.65;
+  color: var(--ink);
 }
 
-/* What's next / What I learned — bullet lists with chevron markers */
-.case-study-bullets {
+/* ── notes list (What's next, What I learned) ──────────── */
+
+.notes {
   list-style: none;
-  padding: 0;
+  margin-top: 8px;
+  counter-reset: notes-counter;
+}
+
+.notes > li {
+  counter-increment: notes-counter;
+  padding: 16px 0;
+  border-bottom: 1px solid var(--border);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: 16px;
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+.notes > li:last-child {
+  border-bottom: none;
+}
+
+.notes > li::before {
+  content: counter(notes-counter, decimal-leading-zero);
+  font-family: var(--mono);
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--muted);
+  align-self: start;
+  padding-top: 4px;
+}
+
+.notes strong {
+  color: var(--ink-strong);
+  font-weight: 600;
+}
+
+.notes p {
   margin: 0;
 }
 
-.case-study-bullets li {
-  font-size: 14px;
-  line-height: 1.55;
-  margin-bottom: 8px;
-  padding-left: 18px;
-  position: relative;
+.notes p + p {
+  margin-top: 8px;
 }
 
-.case-study-bullets li::before {
-  content: "›";
-  position: absolute;
-  left: 0;
-  opacity: 0.7;
+/* ── inline mono chips: code identifiers + file:line refs ── */
+
+code,
+.path {
+  font-family: var(--mono);
+  font-size: 0.85em;
+  padding: 1px 6px;
+  border: 1px solid var(--border-strong);
+  border-radius: 3px;
+  background: var(--surface-alt);
+  color: var(--ink);
+  white-space: nowrap;
 }
 
-/* Links section — vertical link rows, matches the work-card-links style */
-.case-study-links {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  font-size: 14px;
+.path {
+  color: var(--tag-amber);
 }
 
-.case-study-links a {
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px dotted currentColor;
-  width: fit-content;
+/* ── case study body paragraphs ────────────────────────── */
+
+/* Body text inside section-content blocks. Slightly tighter than
+   the hero lede; this is dense engineering prose. */
+.case-body p {
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.65;
+  color: var(--ink);
+  margin-bottom: 14px;
+  max-width: 62ch;
 }
 
-.case-study-links a:hover {
-  border-bottom-style: solid;
+.case-body p:last-child {
+  margin-bottom: 0;
 }
 
-/* Inline code / file path references inside the engineering case studies */
-.case-study code,
-.case-study .file-path {
-  font-family: "Courier New", Courier, monospace;
-  font-size: 0.92em;
-  padding: 1px 5px;
-  border: 1px solid rgba(255, 255, 255, 0.35);
-  border-radius: 2px;
+.case-body strong {
+  color: var(--ink-strong);
+  font-weight: 600;
 }
 
-/* Press strip — used at the bottom of waeve.html, ~14 inline links */
-.press-strip {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  font-size: 13px;
-  line-height: 1.9;
-}
-
-.press-strip li {
-  display: inline;
-}
-
-.press-strip li:not(:last-child)::after {
-  content: " · ";
-  margin: 0 0.3ch;
-  opacity: 0.5;
-}
-
-.press-strip a {
-  color: white;
-  text-decoration: none;
-  border-bottom: 1px dotted currentColor;
-}
-
-.press-strip a:hover {
-  border-bottom-style: solid;
+.case-body em {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05em;
 }

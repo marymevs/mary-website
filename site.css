@@ -316,6 +316,22 @@ nav.primary a:hover {
 .tag.read    { color: var(--tag-green); border-color: var(--tag-green); }
 .tag.watch   { color: var(--tag-amber); border-color: var(--tag-amber); }
 
+/* Tech-stack tag categories for case study hero strips.
+   Same palette, different semantic axis (technology vs. status). */
+.tag.lang    { color: var(--tag-green); border-color: var(--tag-green); }
+.tag.infra   { color: var(--tag-blue);  border-color: var(--tag-blue); }
+.tag.ai      { color: var(--tag-amber); border-color: var(--tag-amber); }
+.tag.role    { color: var(--tag-red);   border-color: var(--tag-red); }
+
+/* Tag strip — horizontal row of tags, used below a hero lede to
+   signal stack/domain at a scan. */
+.tag-strip {
+  margin-top: 24px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
 .tagline {
   font-family: var(--sans);
   font-size: 16px;
