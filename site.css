@@ -531,3 +531,86 @@ footer .stamp {
   gap: 16px;
   flex-wrap: wrap;
 }
+
+/* ── print: invert palette to ink-on-paper, hide chrome ──── */
+
+@media print {
+  :root {
+    --bg: #ffffff;
+    --surface: #ffffff;
+    --surface-alt: #f5f3ee;
+    --ink: #1a1a2e;
+    --ink-strong: #0d0d1a;
+    --muted: #5a5450;
+    --border: #c8c2b8;
+    --border-strong: #8a8580;
+  }
+
+  body {
+    padding: 0;
+    font-size: 11pt;
+  }
+
+  /* No paper grain on actual paper. */
+  body::before {
+    display: none;
+  }
+
+  .page {
+    max-width: none;
+  }
+
+  /* Hide site chrome that doesn't translate to print. */
+  nav.primary,
+  footer .reach {
+    display: none;
+  }
+
+  .hero {
+    margin-top: 24px;
+  }
+
+  .hero h1 {
+    font-size: 32pt;
+  }
+
+  /* Kicker amber doesn't print well — flatten to ink. */
+  .hero .kicker,
+  .section-head .kicker {
+    color: var(--ink-strong);
+  }
+
+  /* Tighter section spacing and avoid orphan section heads. */
+  .section-head {
+    margin-top: 32px;
+    page-break-after: avoid;
+  }
+
+  /* Keep entries / rows from breaking across pages. */
+  .entry,
+  .list > li,
+  .decisions > li,
+  .notes > li {
+    page-break-inside: avoid;
+  }
+
+  /* Links print as ink-colored, underlined. */
+  a {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+
+  /* Tags print as outlined ink, no color fills. */
+  .tag {
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+
+  /* Code / path chips: thin border, transparent fill. */
+  code,
+  .path {
+    background: transparent;
+    border-color: var(--muted);
+    color: var(--ink);
+  }
+}
