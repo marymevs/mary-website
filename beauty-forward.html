@@ -43,8 +43,8 @@
               rel="noopener noreferrer"
               >Isan Elba</a
             >. Two production apps &mdash; donation pickup orchestration and
-            AI-assisted inventory management &mdash; plus a shelter analytics
-            dashboard in design.
+            AI-assisted inventory management &mdash; plus an analytics dashboard
+            in design.
           </p>
           <div class="tag-strip">
             <span class="tag lang">TypeScript</span>
@@ -62,12 +62,12 @@
         <div class="case-body">
           <p>
             Beauty Forward routes donated, unused beauty products from
-            individuals to shelters. The operational reality has three
-            pieces: getting product physically out of donors' homes (courier
-            logistics, payment verification, scheduling), getting it onto
-            shelter shelves with accurate inventory records (intake,
-            classification, batching), and giving shelters visibility into
-            what's coming and what they have on hand (analytics).
+            individuals to shelters. The operational reality has three pieces:
+            getting product physically out of donors' homes (courier logistics,
+            payment verification, scheduling), getting it onto shelter shelves
+            with accurate inventory records (intake, classification, batching),
+            and giving shelters visibility into what's coming and what they have
+            on hand (analytics).
           </p>
           <p>Three apps. Two in production. One in design.</p>
         </div>
@@ -91,19 +91,19 @@
             scheduler. Angular 21 frontend, Firebase Cloud Functions backend,
             Firestore for state. Integrates Roadie for last-mile courier
             dispatch, Givebutter for donation processing and payment
-            verification, HubSpot for CRM upserts, and Resend for
-            transactional email.
+            verification, HubSpot for CRM upserts, and Resend for transactional
+            email.
           </p>
           <p>
-            <strong>inventory-management-system</strong> is the
-            shelter-facing intake and batching app. Same Angular + Firebase
-            shape, plus Firebase Data Connect for relational queries and
-            Vertex AI's Gemini 1.5 Flash for photo-to-inventory extraction
-            at intake.
+            <strong>inventory-management-system</strong> is used by the
+            warehouse manager to catalog and track donated products. Same
+            Angular + Firebase shape, plus Firebase Data Connect for relational
+            queries and Vertex AI's Gemini 1.5 Flash for photo-to-inventory
+            extraction at intake.
           </p>
           <p>
-            <strong>The analytics dashboard</strong> is the third app,
-            currently in design. See "What's next" for the planned shape.
+            <strong>The analytics dashboard</strong> is the third app, currently
+            in design. See "What's next" for the planned shape.
           </p>
         </div>
 
@@ -137,39 +137,19 @@
           </li>
           <li>
             <div class="decision-title">
-              DST-aware pickup window construction
-            </div>
-            <p class="decision-why">
-              <span class="path"
-                >donation-delivery-app/functions/src/providers/roadie-provider.ts:168&ndash;191</span
-              >
-              converts human-readable pickup windows ("9am&ndash;11am",
-              "morning") into the ISO-8601 UTC timestamps Roadie's API
-              expects. The conversion uses
-              <code>Intl.DateTimeFormat</code> against
-              <code>America/New_York</code> so daylight-saving transitions
-              resolve correctly &mdash; not naive <code>Date</code>
-              arithmetic. The same path rejects windows that have already
-              passed, with a one-hour buffer to absorb clock skew between
-              the client, Firebase, and Roadie.
-            </p>
-          </li>
-          <li>
-            <div class="decision-title">
               Givebutter verification via email + paginated search
             </div>
             <p class="decision-why">
               <span class="path"
                 >donation-delivery-app/functions/src/services/givebutter.service.ts:69&ndash;191</span
               >
-              originally tried session-ID-based payment verification, but
-              Google Pay's iframe broke session continuity. The replacement
-              fetches the donor's recent Givebutter transactions by email,
-              paginates up to five pages of fifty, filters client-side
-              against a 30-minute lookback window, and stops early at the
-              cutoff. Defensive amount parsing accounts for three slightly
-              different fields the Givebutter API exposes depending on
-              payment method.
+              originally tried session-ID-based payment verification, but Google
+              Pay's iframe broke session continuity. The replacement fetches the
+              donor's recent Givebutter transactions by email, paginates up to
+              five pages of fifty, filters client-side against a 30-minute
+              lookback window, and stops early at the cutoff. Defensive amount
+              parsing accounts for three slightly different fields the
+              Givebutter API exposes depending on payment method.
             </p>
           </li>
           <li>
@@ -177,17 +157,17 @@
               Idempotent email send across concurrent trigger paths
             </div>
             <p class="decision-why">
-              Confirmation emails can fire from three places: the
-              donor-submit callable, the Firestore
-              <code>onCreate</code> trigger, and the Givebutter webhook
-              recovery path. A <code>sendEmailOnce()</code> pattern in
+              Confirmation emails can fire from three places: the donor-submit
+              callable, the Firestore
+              <code>onCreate</code> trigger, and the Givebutter webhook recovery
+              path. A <code>sendEmailOnce()</code> pattern in
               <span class="path"
                 >donation-delivery-app/functions/src/services/resend.service.ts</span
               >
               stores <code>confirmationEmailSentAt</code> on the donation
-              document and checks it before sending, so duplicate sends
-              from concurrent triggers are impossible by construction
-              &mdash; not merely unlikely.
+              document and checks it before sending, so duplicate sends from
+              concurrent triggers are impossible by construction &mdash; not
+              merely unlikely.
             </p>
           </li>
           <li>
@@ -198,16 +178,15 @@
               <span class="path"
                 >inventory-management-system/functions/src/index.ts:219&ndash;287</span
               >
-              calls Gemini 1.5 Flash with the donor's product photo,
-              temperature 0.2 (low, near-deterministic), and a JSON-schema
-              constraint covering a 30-entry product-type enum plus a
-              high/medium/low confidence field. The prompt asks the model
-              to omit fields it isn't sure about, and the confidence field
-              drives a UI hint that asks for manual verification on
-              low-confidence extractions. When photo extraction is
-              uncertain, a fallback chain tries Open Beauty Facts &rarr;
-              Open Food Facts &rarr; UPCitemdb &rarr; text-only Gemini, in
-              that order.
+              calls Gemini 1.5 Flash with the donor's product photo, temperature
+              0.2 (low, near-deterministic), and a JSON-schema constraint
+              covering a 30-entry product-type enum plus a high/medium/low
+              confidence field. The prompt asks the model to omit fields it
+              isn't sure about, and the confidence field drives a UI hint that
+              asks for manual verification on low-confidence extractions. When
+              photo extraction is uncertain, a fallback chain tries Open Beauty
+              Facts &rarr; Open Food Facts &rarr; UPCitemdb &rarr; text-only
+              Gemini, in that order.
             </p>
           </li>
         </ul>
@@ -224,31 +203,29 @@
               playground (replay historical donation flows under alternative
               batching and dispatch rules, compare outcomes); shelter-volume
               forecasting with confidence bands (per-region, per-category,
-              simple SARIMA or Prophet baseline benchmarked against
-              held-out MAE); and real-time streaming tiles via SSE for live
-              donation-flow visibility. Stretch scope: an optimization
-              visualizer for the shelter-batching allocation problem.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Shelter acceptance rule enforcement.</strong> The data
-              model already stores per-shelter
-              <code>acceptedTypes</code>, <code>rejectedTypes</code>,
-              <code>preferredBrands</code>, and
-              <code>capacityPerBatch</code>. The matching algorithm that
-              filters incoming products against these rules during batch
-              allocation is being built &mdash; today the inventory app
-              allocates products manually.
+              simple SARIMA or Prophet baseline benchmarked against held-out
+              MAE); and real-time streaming tiles via SSE for live donation-flow
+              visibility. Stretch scope: an optimization visualizer for the
+              shelter-batching allocation problem.
             </p>
           </li>
           <li>
             <p>
               <strong>Real Givebutter session creation.</strong> The current
-              donation flow builds a Givebutter checkout URL; the
-              longer-term shape is a server-side session-creation API call
-              so the platform can carry session metadata end-to-end and
-              tighten reconciliation.
+              donation flow builds a Givebutter checkout URL; the longer-term
+              shape is a server-side session-creation API call so the platform
+              can carry session metadata end-to-end and tighten reconciliation.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Shelter acceptance rule enforcement.</strong> The data
+              model already stores per-shelter <code>acceptedTypes</code>,
+              <code>rejectedTypes</code>, <code>preferredBrands</code>, and
+              <code>capacityPerBatch</code>. The matching algorithm that filters
+              incoming products against these rules during batch allocation is
+              being built &mdash; today the inventory app allocates products
+              manually.
             </p>
           </li>
         </ol>

@@ -35,9 +35,9 @@
           <div class="kicker">§ — Case Study · Engineering</div>
           <h1>MOYE</h1>
           <p class="lede">
-            An online record store for the artist MOYE. Custom checkout
-            backend, an audio player that survives every page navigation, and
-            a hand-tuned hover language.
+            An online record store for the artist MOYE. Custom checkout backend,
+            an audio player that survives page navigation, and a hand-tuned
+            hover language.
           </p>
           <div class="tag-strip">
             <span class="tag lang">TypeScript</span>
@@ -54,18 +54,17 @@
         </div>
         <div class="case-body">
           <p>
-            Off-the-shelf options for artist commerce &mdash; Shopify,
-            Bandcamp, Big Cartel &mdash; are templated and constrained. They
-            limit creative direction, impose a particular checkout shape, and
-            don't preserve playback state across page transitions. For an
-            artist whose work treats the album as a visual and sonic
-            environment, the platform is part of the product.
+            Off-the-shelf options for artist commerce &mdash; Shopify, Bandcamp,
+            Big Cartel &mdash; are templated and constrained. They limit
+            creative direction, impose a particular checkout shape, and don't
+            preserve playback state across page transitions. For an artist whose
+            work treats the album as a visual and sonic environment, the
+            platform is part of the product.
           </p>
           <p>
-            MOYE's site is a custom Angular SSR build that owns its own
-            checkout backend, runs a persistent audio player outside the
-            router outlet, and treats hover and cursor behavior as part of
-            the visual identity rather than browser default.
+            MOYE's site is a custom Angular SSR build that owns its own checkout
+            backend, runs a persistent audio player outside the router outlet,
+            and treats hover and cursor behavior as part of the visual identity.
           </p>
         </div>
 
@@ -82,16 +81,16 @@
         </ul>
         <div class="case-body">
           <p>
-            The frontend is an Angular SSR app deployed via Firebase Hosting.
-            Cart state lives in a root-scoped signal-based service with
-            localStorage persistence. Checkout posts to a Firebase Function
-            that re-fetches prices and validates stock against Firestore,
-            builds line items server-side, writes a pending order, then
-            creates a Stripe payment session. A webhook flips the order to
-            paid once Stripe confirms. The audio player is a singleton
-            service plus a single persistent <code>&lt;audio&gt;</code>
-            element mounted outside the router outlet &mdash; playback
-            continues across every navigation.
+            The frontend is an Angular SSR app deployed via Firebase App
+            Hosting. Cart state lives in a root-scoped signal-based service with
+            localStorage persistence. Checkout posts to a Firebase Function that
+            re-fetches prices and validates stock against Firestore, builds line
+            items server-side, writes a pending order, then creates a Stripe
+            payment session. A webhook flips the order to paid once Stripe
+            confirms. The audio player is a singleton service plus a single
+            persistent <code>&lt;audio&gt;</code>
+            element mounted outside the router outlet &mdash; playback continues
+            across navigation.
           </p>
         </div>
 
@@ -106,19 +105,18 @@
             </div>
             <p class="decision-why">
               <span class="path">functions/src/index.ts:62&ndash;84</span>
-              re-fetches prices from Firestore on every checkout and
-              validates stock before building Stripe-bound line items
-              &mdash; the client is never trusted on price.
+              re-fetches prices from Firestore on every checkout and validates
+              stock before building Stripe-bound line items &mdash; the client
+              is never trusted on price.
               <span class="path">functions/src/index.ts:114&ndash;124</span>
               writes a pending order ledger before the Stripe session is
               created, and
               <span class="path">functions/src/index.ts:178&ndash;204</span>
-              flips it to paid in the webhook. Stripe handles payment; MOYE
-              owns session orchestration, validation, and the order record.
-              That tradeoff &mdash; more backend code in exchange for
-              end-to-end control of pricing, inventory, and the
-              post-payment hook &mdash; is the whole reason not to use
-              Stripe Checkout's hosted form.
+              flips it to paid in the webhook. Stripe handles payment; MOYE owns
+              session orchestration, validation, and the order record. That
+              tradeoff &mdash; more backend code in exchange for end-to-end
+              control of pricing, inventory, and the post-payment hook &mdash;
+              is the whole reason not to use Stripe Checkout's hosted form.
             </p>
           </li>
           <li>
@@ -131,16 +129,15 @@
               >
               is a <code>providedIn: 'root'</code> service holding
               <code>currentTrack</code>, <code>isPlaying</code>,
-              <code>position</code>, and <code>queue</code> as signals,
-              backed by a single persistent HTML
-              <code>&lt;audio&gt;</code> element. The player component is
-              mounted at
+              <code>position</code>, and <code>queue</code> as signals, backed
+              by a single persistent HTML <code>&lt;audio&gt;</code> element.
+              The player component is mounted at
               <span class="path">web/src/app/app.html:7</span>
-              &mdash; outside <code>&lt;router-outlet&gt;</code> &mdash; so
-              it survives every route change. Without this shape the
-              <code>&lt;audio&gt;</code> element would unmount and reload
-              on navigation, losing position and rebuffering each time.
-              With it, the user keeps listening as they browse.
+              &mdash; outside <code>&lt;router-outlet&gt;</code> &mdash; so it
+              survives every route change. Without this shape the
+              <code>&lt;audio&gt;</code> element would unmount and reload on
+              navigation, losing position and rebuffering each time. With it,
+              the user keeps listening as they browse.
             </p>
           </li>
           <li>
@@ -156,11 +153,10 @@
                 >web/src/app/features/home/sections/buy.section.ts:100&ndash;145</span
               >
               coordinates a scale-up on product art with a cursor-following
-              caption; signal-driven position updates keep the caption in
-              sync with the mouse. The interaction is choreographed, not
-              browser default &mdash; which matters when the site is
-              supposed to feel like part of the album, not a checkout page
-              with merch on it.
+              caption; signal-driven position updates keep the caption in sync
+              with the mouse. The interaction is choreographed, not browser
+              default &mdash; which matters when the site is supposed to feel
+              like part of the album, not a checkout page with merch on it.
             </p>
           </li>
         </ul>
@@ -174,10 +170,10 @@
             <p>
               <strong>WAV streaming.</strong> The current player uses a bare
               HTML <code>&lt;audio&gt;</code> element with browser-native
-              progressive download &mdash; no chunked range requests, no
-              hover prefetch, no in-memory buffer. For high-fidelity tracks
-              this gets sluggish. Chunked range-request streaming plus
-              hover prefetch is the next perf win.
+              progressive download &mdash; no chunked range requests, no hover
+              prefetch, no in-memory buffer. For high-fidelity tracks this gets
+              sluggish. Chunked range-request streaming plus hover prefetch is
+              the next perf win.
             </p>
           </li>
         </ol>
