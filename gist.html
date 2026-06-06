@@ -61,9 +61,8 @@
             asks Claude to synthesize a short, personal read.
           </p>
           <p>
-            The architecture is sized for the 1&ndash;10K daily-user range. Cost
-            ceiling, latency budget, and operational footprint are designed for
-            that bracket.
+            The architecture is sized for a small number early adopters, as a
+            single scheduled function generates every due briefing in one run.
           </p>
         </div>
 
@@ -169,6 +168,14 @@
               still one Claude call that emits the whole newspaper. Splitting
               independent sections into concurrent calls collapses run time
               &mdash; the same fan-out the connectors already use.
+            </p>
+          </li>
+          <li>
+            <p>
+              <strong>Gist generation fan out.</strong> The architecture is
+              sized for a small number (around 100) of users. A single scheduled
+              function generates every due briefing in one run, and will quickly
+              come against rate limits within function calls.
             </p>
           </li>
           <li>
