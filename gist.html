@@ -104,7 +104,7 @@
               uses <code>Promise.all</code> across five independent connector
               calls per user. The connectors don't share state, so serializing
               them buys nothing &mdash; running them in parallel cuts per-user
-              latency from roughly five seconds to one.
+              latency and ensures a better user experience.
             </p>
           </li>
           <li>
