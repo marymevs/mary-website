@@ -165,6 +165,14 @@
         <ol class="notes">
           <li>
             <p>
+              <strong>Parallel section generation.</strong> The briefing is
+              still one Claude call that emits the whole newspaper. Splitting
+              independent sections into concurrent calls collapses run time
+              &mdash; the same fan-out the connectors already use.
+            </p>
+          </li>
+          <li>
+            <p>
               <strong>Model tiering.</strong> Every Claude call currently uses
               <code>claude-sonnet-4-20250514</code>. Lightweight classification
               work should move to Haiku; reserve Sonnet for the user-facing
