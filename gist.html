@@ -134,27 +134,6 @@
               Cheap insurance.
             </p>
           </li>
-          <li>
-            <div class="decision-title">Bounded worker pool for Gmail</div>
-            <p class="decision-why">
-              <span class="path">gmailInt.ts:426&ndash;447</span>
-              defines a <code>mapWithConcurrency</code> helper that caps
-              in-flight Gmail requests. Gmail's per-user rate limits are tight
-              and a single user with a busy inbox can otherwise consume the
-              quota the rest of the batch needs. A small concurrency limit keeps
-              every user's connector call inside the budget.
-            </p>
-          </li>
-          <li>
-            <div class="decision-title">Batched Claude classification</div>
-            <p class="decision-why">
-              <span class="path">gmailInt.ts:816</span>
-              passes many candidate emails into a single Claude call instead of
-              one call per email. At the batch sizes Gist uses there's no
-              quality cliff, and the per-classification cost drops by roughly an
-              order of magnitude.
-            </p>
-          </li>
         </ul>
 
         <div class="section-head">
@@ -172,7 +151,7 @@
           </li>
           <li>
             <p>
-              <strong>Gist generation fan out.</strong> The architecture is
+              <strong>Gist generation fan-out.</strong> The architecture is
               sized for a small number (around 100) of users. A single scheduled
               function generates every due briefing in one run, and will quickly
               come against rate limits within function calls.
@@ -180,31 +159,14 @@
           </li>
           <li>
             <p>
-              <strong>Model tiering.</strong> Every Claude call currently uses
-              <code>claude-sonnet-4-20250514</code>. Lightweight classification
-              work should move to Haiku; reserve Sonnet for the user-facing
-              briefing prose.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Anthropic prompt caching.</strong> System prompts and
-              connector summaries are stable across users and days &mdash;
-              caching them cuts input-token cost meaningfully.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Per-user token budgets.</strong> No circuit breaker on
-              runaway prompt size today. A budget gate would catch a misbehaving
-              connector before it burns through the bill.
-            </p>
-          </li>
-          <li>
-            <p>
-              <strong>Pub/Sub for queued work.</strong> The current shape is
-              scheduler plus on-demand HTTPS. Long-running or retryable tasks
-              would benefit from a real queue rather than ad-hoc retry logic.
+              <strong>Cost reduction.</strong> Every Claude call currently uses
+              <code>claude-sonnet-4-20250514</code>; lightweight classification
+              work should move to Haiku and reserve Sonnet for the user-facing
+              briefing prose. System prompts and connector summaries are stable
+              across users and days, so caching them cuts input-token cost
+              meaningfully. And there's no circuit breaker on runaway prompt
+              size today &mdash; a per-user token budget would catch a
+              misbehaving connector before it burns through the bill.
             </p>
           </li>
         </ol>
