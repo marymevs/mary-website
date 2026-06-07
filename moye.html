@@ -113,10 +113,9 @@
               created, and
               <span class="path">functions/src/index.ts:178&ndash;204</span>
               flips it to paid in the webhook. Stripe handles payment; MOYE owns
-              session orchestration, validation, and the order record. That
-              tradeoff &mdash; more backend code in exchange for end-to-end
-              control of pricing, inventory, and the post-payment hook &mdash;
-              is the whole reason not to use Stripe Checkout's hosted form.
+              session orchestration, validation, and the order record. The
+              tradeoff: more backend code in exchange for end-to-end control of
+              pricing, inventory, and the post-payment hook.
             </p>
           </li>
           <li>
